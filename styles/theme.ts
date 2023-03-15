@@ -2,11 +2,11 @@ import { DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
   colors: {
-    primary: '#7CB896',
-    secondary: '#9CC8A4',
-    primaryDark: '#48A684',
-    primaryLight: '#B6D4AE',
-    textColor: '#343A40',
-    bgColor: '#F8F9FA',
+    primary: '#48BB78',
+    secondary: '#9AE6B4',
+    primaryDark: '#2F855A',
+    primaryLight: '#C6F6D5',
+    textColor: '#2D3748',
+    bgColor: '#EDF2F7',
   },
 };

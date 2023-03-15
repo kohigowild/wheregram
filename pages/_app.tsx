@@ -5,6 +5,8 @@ import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
+import { ChakraProvider } from '@chakra-ui/react';
+import Header from '@/components/@common/header';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -12,10 +14,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </ThemeProvider>
+        <ChakraProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <Header />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </ChakraProvider>
       </RecoilRoot>
     </QueryClientProvider>
   );
