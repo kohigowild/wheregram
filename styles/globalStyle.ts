@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { notoSansKrLight } from './font/notoSansKr';
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -8,14 +9,11 @@ const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     height: 100%;
+    font-family: ${notoSansKrLight.style.fontFamily};
   }
   
   #root {
     margin: 0 auto;
-  }
-  
-  html {
-    font-size: 62.5%;
   }
   
   * {

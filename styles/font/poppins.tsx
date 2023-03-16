@@ -1,7 +1,7 @@
 import { Poppins } from '@next/font/google';
 
 const extraBold = Poppins({
-  weight: '800',
+  weight: '700',
   display: 'fallback',
   subsets: ['latin'],
   style: 'normal',

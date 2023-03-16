@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
+import { Flex } from '@chakra-ui/react';
 import { poppinsExtraBold } from '@/styles/font/poppins';
 
 export default function Logo() {
@@ -8,6 +10,7 @@ export default function Logo() {
     font-weight: 800;
     color: ${({ theme }) => theme.colors.textColor};
     font-family: ${poppinsExtraBold.style.fontFamily};
+    cursor: pointer;
   `;
 
   const LogoColorTitle = styled.div`
@@ -15,11 +18,17 @@ export default function Logo() {
     font-weight: 800;
     color: ${({ theme }) => theme.colors.primary};
     font-family: ${poppinsExtraBold.style.fontFamily};
+    cursor: pointer;
   `;
+
   return (
     <>
-      <LogoColorTitle>#</LogoColorTitle>
-      <LogoTitle>WHEREGRAM</LogoTitle>
+      <Link href="/">
+        <Flex>
+          <LogoColorTitle>#</LogoColorTitle>
+          <LogoTitle>WHEREGRAM</LogoTitle>
+        </Flex>
+      </Link>
     </>
   );
 }

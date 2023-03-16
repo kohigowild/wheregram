@@ -7,6 +7,7 @@ import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
 import { ChakraProvider } from '@chakra-ui/react';
 import Header from '@/components/@common/header';
+import FooterNav from '@/components/@common/footerNav';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <GlobalStyle />
             <Header />
             <Component {...pageProps} />
+            <FooterNav />
           </ThemeProvider>
         </ChakraProvider>
       </RecoilRoot>
