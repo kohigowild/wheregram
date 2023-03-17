@@ -3,10 +3,10 @@ import styled, { keyframes } from 'styled-components';
 import { Tag } from '@chakra-ui/react';
 import FeedCard from '@/components/root/feedCard/FeedCard';
 import { notoSansKrMedium } from '@/styles/font/notoSansKr';
-import lunch from '../public/lunch.jpg';
-import pool from '../public/pool.jpg';
-import flower from '../public/flower.jpg';
-import tako from '../public/tako.jpg';
+import lunch from '/public/images/lunch.jpg';
+import pool from '/public/images/pool.jpg';
+import flower from '/public/images/flower.jpg';
+import tako from '/public/images/tako.jpg';
 
 function Home() {
   const Slide = keyframes`
