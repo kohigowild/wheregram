@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Tabs, TabList, Tab, Center } from '@chakra-ui/react';
-import { Icon } from '@chakra-ui/react';
+import { Tabs, TabList, Tab, Center, Icon } from '@chakra-ui/react';
 import { HiHome, HiHashtag, HiPlusCircle, HiSearch, HiIdentification } from 'react-icons/hi';
 import styled from 'styled-components';
 
@@ -36,8 +35,10 @@ export default function FooterNav() {
 
   const Footer = styled.div`
     position: fixed;
-    bottom: 8px;
+    bottom: 0;
+    padding: 8px 0;
     width: 100%;
+    background-color: white;
   `;
 
   return (

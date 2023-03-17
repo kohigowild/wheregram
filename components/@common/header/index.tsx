@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <>
-      <Center w="100%" h="52px" boxShadow="base">
+      <Center w="100%" h="52px" boxShadow="base" position={'fixed'} top="0" backgroundColor={'white'}>
         <Logo />
         <Link href="/settings">
           <Settings>

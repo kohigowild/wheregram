@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyle from '@/styles/globalStyle';
 import { theme } from '@/styles/theme';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -12,6 +12,11 @@ import FooterNav from '@/components/@common/footerNav';
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
 
+  const Main = styled.div`
+    min-height: 80vh;
+    margin: 52px 0;
+  `;
+
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
@@ -19,7 +24,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ThemeProvider theme={theme}>
             <GlobalStyle />
             <Header />
-            <Component {...pageProps} />
+            <Main>
+              <Component {...pageProps} />
+            </Main>
             <FooterNav />
           </ThemeProvider>
         </ChakraProvider>

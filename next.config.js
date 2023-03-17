@@ -6,4 +6,7 @@ const nextConfig = {
   },
 };
 
+const withImages = require('next-images');
+
 module.exports = nextConfig;
+module.exports = withImages();

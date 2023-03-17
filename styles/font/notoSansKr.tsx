@@ -1,7 +1,7 @@
-import { Noto_Sans_KR } from '@next/font/google';
+import { Noto_Sans } from '@next/font/google';
 
-const bold = Noto_Sans_KR({
-  weight: '700',
+const bold = Noto_Sans({
+  weight: '900',
   display: 'fallback',
   subsets: ['latin'],
   style: 'normal',
@@ -9,7 +9,7 @@ const bold = Noto_Sans_KR({
   fallback: ['system-ui'],
 });
 
-const medium = Noto_Sans_KR({
+const medium = Noto_Sans({
   weight: '500',
   display: 'fallback',
   subsets: ['latin'],
@@ -18,7 +18,7 @@ const medium = Noto_Sans_KR({
   fallback: ['system-ui'],
 });
 
-const light = Noto_Sans_KR({
+const light = Noto_Sans({
   weight: '300',
   display: 'fallback',
   subsets: ['latin'],
