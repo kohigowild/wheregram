@@ -48,7 +48,7 @@ export default function FooterNav() {
           <Center w="100%" h="52px">
             {TabsInfo.map((tab) => (
               <Link href={'/' + tab.name} key={tab.id}>
-                <Tab w={10} h={10} m={4} _selected={{ color: 'white', bg: 'green.400' }}>
+                <Tab w={10} h={10} ml={4} mr={4} _selected={{ color: 'white', bg: 'green.400' }}>
                   <Icon as={tab.icon} w={6} h={6} />
                 </Tab>
               </Link>

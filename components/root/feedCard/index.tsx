@@ -39,7 +39,7 @@ export default function FeedCard({ card }: FeedDataArray) {
       <Center mb={2}>
         <Image
           src={card.img}
-          alt="dd"
+          alt={card.name}
           style={{ width: '90vw', height: '90vw', borderRadius: '8px', objectFit: 'cover' }}
         />
       </Center>

@@ -13,8 +13,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
 
   const Main = styled.div`
-    min-height: 80vh;
-    margin: 52px 0;
+    margin-top: 60px;
+    margin-bottom: 80px;
   `;
 
   return (
