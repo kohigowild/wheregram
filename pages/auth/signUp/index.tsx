@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Center } from '@chakra-ui/react';
 import FormInput from '@/components/@common/formInput';
 import FormButton from '@/components/@common/formButton';
+import ImgAddForm from '@/components/auth/ImgAddForm';
 
 export default function SignUp() {
   const SignUpForm = [
@@ -32,6 +33,7 @@ export default function SignUp() {
   return (
     <Center>
       <Form>
+        <ImgAddForm />
         {SignUpForm.map((props) => (
           <FormInput props={props} key={props.id} />
         ))}
