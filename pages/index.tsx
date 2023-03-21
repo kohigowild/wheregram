@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styled, { keyframes } from 'styled-components';
 import { Tag } from '@chakra-ui/react';
-import FeedCard from '@/components/root/feedCard';
+import FeedCard from '@/components/@common/feedCard';
 import { notoSansKrMedium } from '@/styles/font/notoSansKr';
 import lunch from '/public/images/lunch.jpg';
 import pool from '/public/images/pool.jpg';
