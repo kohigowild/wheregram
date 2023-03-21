@@ -10,23 +10,31 @@ export default function SignUp() {
     {
       id: 0,
       placeholder: 'email',
+      value: '',
+      readOnly: false,
     },
     {
       id: 1,
       placeholder: 'password',
+      value: '',
+      readOnly: false,
     },
     {
       id: 2,
       placeholder: 'confirm password',
+      value: '',
+      readOnly: false,
     },
     {
       id: 3,
       placeholder: 'nickname',
+      value: '',
+      readOnly: false,
     },
   ];
 
   const Form = styled.div`
-    width: 240px;
+    width: 300px;
     padding: 6vh 0;
   `;
 

@@ -23,7 +23,7 @@ export default function FeedCard({ card }: FeedDataArray) {
   `;
 
   return (
-    <Box mb={4} ml="5vw" mr="5vw">
+    <Box mt={10} ml="5vw" mr="5vw">
       <Center>
         <Flex w="90vw" mb={4} align="center">
           <Avatar mr={2} />
@@ -40,7 +40,13 @@ export default function FeedCard({ card }: FeedDataArray) {
         <Image
           src={card.img}
           alt={card.name}
-          style={{ width: '90vw', height: '90vw', borderRadius: '8px', objectFit: 'cover' }}
+          style={{
+            width: '90vw',
+            height: '90vw',
+            maxHeight: '500px',
+            borderRadius: '8px',
+            objectFit: 'cover',
+          }}
         />
       </Center>
       <Center mb={2}>

@@ -11,15 +11,19 @@ export default function Login() {
     {
       id: 0,
       placeholder: 'email',
+      value: '',
+      readOnly: false,
     },
     {
       id: 1,
       placeholder: 'password',
+      value: '',
+      readOnly: false,
     },
   ];
 
   const Form = styled.div`
-    width: 240px;
+    width: 300px;
     padding: 6vh 0;
   `;
 

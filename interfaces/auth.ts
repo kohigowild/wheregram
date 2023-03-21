@@ -9,4 +9,6 @@ export interface InputProps {
 export interface InputInfo {
   id: number;
   placeholder: string;
+  value: string;
+  readOnly: boolean;
 }

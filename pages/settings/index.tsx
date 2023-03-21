@@ -9,10 +9,12 @@ export default function index() {
   const inputProps = {
     id: 0,
     placeholder: 'change nickname',
+    value: '',
+    readOnly: false,
   };
 
   const Form = styled.div`
-    width: 240px;
+    width: 300px;
     padding: 6vh 0;
   `;
 
