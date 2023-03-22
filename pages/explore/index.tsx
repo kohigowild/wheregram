@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+import { Center } from '@chakra-ui/react';
 import FeedCard from '@/components/@common/feedCard';
 import lunch from '/public/images/lunch.jpg';
 import pool from '/public/images/pool.jpg';
@@ -45,12 +47,19 @@ export default function index() {
     },
   ];
 
+  const Form = styled.div`
+    width: 360px;
+    padding: 3vh 0;
+  `;
+
   // 연동 후 무한 스크롤 구현
   return (
-    <div style={{ paddingTop: '4px' }}>
-      {CardInfo.map((card) => (
-        <FeedCard card={card} key={card.id} />
-      ))}
-    </div>
+    <Center>
+      <Form>
+        {CardInfo.map((card) => (
+          <FeedCard card={card} key={card.id} />
+        ))}
+      </Form>
+    </Center>
   );
 }

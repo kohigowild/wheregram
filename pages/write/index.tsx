@@ -8,7 +8,7 @@ import FormButton from '@/components/@common/formButton';
 import { Center, Textarea } from '@chakra-ui/react';
 import { LocationType } from '@/interfaces/location';
 
-export default function WriteForm() {
+export default function Write() {
   const [address, setAddress] = useState<string>('');
   const [position, setPosition] = useState<LocationType | null>(null);
   const [formState, setFormState] = useState<boolean>(false);

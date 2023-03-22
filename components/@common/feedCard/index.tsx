@@ -22,49 +22,56 @@ export default function FeedCard({ card }: FeedDataArray) {
     color: #adb5bd;
   `;
 
+  const Form = styled.div`
+    width: 360px;
+    padding: 3vh 0;
+  `;
+
   return (
-    <Box mt={10} ml="5vw" mr="5vw">
-      <Center>
-        <Flex w="90vw" mb={4} align="center">
-          <Avatar mr={2} />
-          <div>
-            <UserName>{card.name}</UserName>
-            <UserLocation>
-              <Icon as={HiLocationMarker} mr={1} mt={1} />
-              {card.location}
-            </UserLocation>
-          </div>
-        </Flex>
-      </Center>
-      <Center mb={2}>
-        <Image
-          src={card.img}
-          alt={card.name}
-          style={{
-            width: '90vw',
-            height: '90vw',
-            maxHeight: '500px',
-            borderRadius: '8px',
-            objectFit: 'cover',
-          }}
-        />
-      </Center>
-      <Center mb={2}>
-        <Flex w="90vw" justify="space-between" align="center" color="gray.700">
-          좋아요 {card.like} 개
-          <Icon as={TiHeartFullOutline} mt={1} w={6} h={6} />
-        </Flex>
-      </Center>
-      <Center>
-        <Flex w="90vw" mb={2} color="green.400">
-          이 장소에 <Icon as={HiStar} mt="6px" ml={1} mr={1} /> {card.rating} 점을 남겼어요.
-        </Flex>
-      </Center>
-      <Center>
-        <Flex w="90vw" mb={2} color="gray.700">
-          <Bold>{card.name}</Bold> {card.desc}
-        </Flex>
-      </Center>
-    </Box>
+    <Form>
+      <Box mt={10} ml="5vw" mr="5vw">
+        <Center>
+          <Flex w="90vw" mb={4} align="center">
+            <Avatar mr={2} />
+            <div>
+              <UserName>{card.name}</UserName>
+              <UserLocation>
+                <Icon as={HiLocationMarker} mr={1} mt={1} />
+                {card.location}
+              </UserLocation>
+            </div>
+          </Flex>
+        </Center>
+        <Center mb={2}>
+          <Image
+            src={card.img}
+            alt={card.name}
+            style={{
+              width: '300px',
+              height: '300px',
+              maxHeight: '500px',
+              borderRadius: '8px',
+              objectFit: 'cover',
+            }}
+          />
+        </Center>
+        <Center mb={2}>
+          <Flex w="90vw" justify="space-between" align="center" color="gray.700">
+            좋아요 {card.like} 개
+            <Icon as={TiHeartFullOutline} mt={1} w={6} h={6} />
+          </Flex>
+        </Center>
+        <Center>
+          <Flex w="90vw" mb={2} color="green.400">
+            이 장소에 <Icon as={HiStar} mt="6px" ml={1} mr={1} /> {card.rating} 점을 남겼어요.
+          </Flex>
+        </Center>
+        <Center>
+          <Flex w="90vw" mb={2} color="gray.700">
+            <Bold>{card.name}</Bold> {card.desc}
+          </Flex>
+        </Center>
+      </Box>
+    </Form>
   );
 }

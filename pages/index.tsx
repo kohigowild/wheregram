@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styled, { keyframes } from 'styled-components';
-import { Tag } from '@chakra-ui/react';
+import { Center, Tag } from '@chakra-ui/react';
 import FeedCard from '@/components/@common/feedCard';
 import { notoSansKrMedium } from '@/styles/font/notoSansKr';
 import lunch from '/public/images/lunch.jpg';
@@ -35,12 +35,17 @@ function Home() {
   const SlideTrack = styled.div`
     position: relative;
     overflow: hidden;
-    width: 100vw;
+    width: 360px;
   `;
 
   const SlideList = styled.div`
     display: flex;
     animation: ${Slide} 12s 2s alternate infinite;
+  `;
+
+  const Form = styled.div`
+    width: 360px;
+    padding: 3vh 0;
   `;
 
   const CardInfo = [
@@ -88,26 +93,32 @@ function Home() {
         <title>#wheregram</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Title>
-        <p style={{ marginBottom: '4px' }}>
-          <Tag colorScheme="green" borderRadius="full" m="0 4px">
-            #관광 명소
-          </Tag>
-          부터
-          <Tag colorScheme="green" borderRadius="full" m="0 4px">
-            #맛집
-          </Tag>
-          까지
-        </p>
-        <p>모든 체험을 기록하고 공유하세요.</p>
-      </Title>
-      <SlideTrack>
-        <SlideList>
-          {CardInfo.map((card) => (
-            <FeedCard card={card} key={card.id} />
-          ))}
-        </SlideList>
-      </SlideTrack>
+      <Center>
+        <Form>
+          <Title>
+            <p style={{ marginBottom: '4px' }}>
+              <Tag colorScheme="green" borderRadius="full" m="0 4px">
+                #관광 명소
+              </Tag>
+              부터
+              <Tag colorScheme="green" borderRadius="full" m="0 4px">
+                #맛집
+              </Tag>
+              까지
+            </p>
+            <p>모든 체험을 기록하고 공유하세요.</p>
+          </Title>
+          <SlideTrack>
+            <SlideList>
+              <Center>
+                {CardInfo.map((card) => (
+                  <FeedCard card={card} key={card.id} />
+                ))}
+              </Center>
+            </SlideList>
+          </SlideTrack>
+        </Form>
+      </Center>
     </>
   );
 }

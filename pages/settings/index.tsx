@@ -5,7 +5,7 @@ import ImgAddForm from '@/components/auth/imgAddForm';
 import FormInput from '@/components/@common/formInput';
 import FormButton from '@/components/@common/formButton';
 
-export default function index() {
+export default function Settings() {
   const inputProps = {
     id: 0,
     placeholder: 'change nickname',

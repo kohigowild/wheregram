@@ -19,7 +19,7 @@ export default function Profile() {
   `;
 
   return (
-    <Flex align={'center'}>
+    <Flex align={'center'} mb="20px">
       <Box w={'100px'} h={'100px'} position="relative">
         <Image
           priority
