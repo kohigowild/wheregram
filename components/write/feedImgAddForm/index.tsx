@@ -1,6 +1,6 @@
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import React, { useState } from 'react';
 import { Box, Center, Icon } from '@chakra-ui/react';
 import { HiOutlinePlus } from 'react-icons/hi';
 import defaultImage from '/public/default-img.png';
