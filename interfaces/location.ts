@@ -8,6 +8,8 @@ export interface AddressType {
   setAddress: React.Dispatch<React.SetStateAction<string>>;
   formState: boolean;
   setFormState: React.Dispatch<React.SetStateAction<boolean>>;
+  position: LocationType | null;
+  setPosition: React.Dispatch<React.SetStateAction<LocationType | null>>;
 }
 
 export interface Position {
