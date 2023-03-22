@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { Flex, Box, Badge } from '@chakra-ui/react';
 import defaultImage from '/public/profile-user.png';
 
 export default function Profile() {
-  const [imagePreview, setImagePreview] = useState<any>(defaultImage);
-
   const Title = styled.div`
     margin-bottom: 12px;
     font-size: 20px;
@@ -25,7 +23,7 @@ export default function Profile() {
       <Box w={'100px'} h={'100px'} position="relative">
         <Image
           priority
-          src={imagePreview}
+          src={defaultImage}
           alt="profileImage"
           fill
           style={{ borderRadius: '50%', objectFit: 'cover', cursor: 'pointer' }}
