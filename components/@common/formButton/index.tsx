@@ -4,7 +4,7 @@ import { BtnProps } from '@/interfaces/auth';
 
 export default function FormButton({ props }: BtnProps) {
   const SubmitButton = styled.button`
-    width: 240px;
+    width: 300px;
     height: 40px;
     border-radius: 12px;
     border: 0;

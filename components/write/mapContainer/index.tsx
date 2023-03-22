@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { Center } from '@chakra-ui/react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import FormInput from '@/components/@common/formInput';
+import FormButton from '@/components/@common/formButton';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { LocationType } from '@/interfaces/location';
 import { callAddress } from '@/api/location/callAddress';
+import { AddressType } from '@/interfaces/location';
 
-export default function MapContainer() {
+export default function MapContainer({ address, setAddress, setFormState }: AddressType) {
   const location = useGeolocation();
   const latitude = location.lat;
   const longitude = location.lng;
   const [position, setPosition] = useState<LocationType | null>(null);
-  const [address, setAddress] = useState<string>('');
 
   const writeProps = [
     {
@@ -29,11 +29,6 @@ export default function MapContainer() {
     },
   ];
 
-  const Form = styled.div`
-    width: 300px;
-    padding: 6vh 0;
-  `;
-
   useEffect(() => {
     {
       position && callAddress(position.lng, position.lat, setAddress);
@@ -42,24 +37,25 @@ export default function MapContainer() {
 
   return (
     <>
+      {writeProps.map((props) => (
+        <FormInput props={props} key={props.id} />
+      ))}
+      <Map
+        center={position ? { lat: position.lat, lng: position.lng } : { lat: latitude, lng: longitude }}
+        style={{ width: '300px', height: '300px', borderRadius: '12px', marginBottom: '12px' }}
+        level={8}
+        onClick={(_, e) =>
+          setPosition({
+            lat: e.latLng.getLat(),
+            lng: e.latLng.getLng(),
+          })
+        }>
+        {position ? <MapMarker position={position} /> : <MapMarker position={{ lat: latitude, lng: longitude }} />}
+      </Map>
       <Center>
-        <Form>
-          {writeProps.map((props) => (
-            <FormInput props={props} key={props.id} />
-          ))}
-          <Map
-            center={{ lat: latitude, lng: longitude }}
-            style={{ width: '300px', height: '300px', borderRadius: '12px' }}
-            level={8}
-            onClick={(_, e) =>
-              setPosition({
-                lat: e.latLng.getLat(),
-                lng: e.latLng.getLng(),
-              })
-            }>
-            {position ? <MapMarker position={position} /> : <MapMarker position={{ lat: latitude, lng: longitude }} />}
-          </Map>
-        </Form>
+        <div onClick={() => setFormState(true)}>
+          <FormButton props={'다음으로'} />
+        </div>
       </Center>
     </>
   );

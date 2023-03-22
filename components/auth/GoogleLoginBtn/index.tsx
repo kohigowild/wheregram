@@ -8,7 +8,7 @@ export default function GoogleLoginBtn() {
   const GoogleLogin = styled.button`
     position: relative;
     margin-top: 20px;
-    width: 240px;
+    width: 300px;
     height: 40px;
     border-radius: 12px;
     border: 0;

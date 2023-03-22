@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Center } from '@chakra-ui/react';
 import FormInput from '@/components/@common/formInput';
 import FormButton from '@/components/@common/formButton';
-import GoogleLoginBtn from '@/components/auth/GoogleLoginBtn';
+import GoogleLoginBtn from '@/components/auth/googleLoginBtn';
 
 export default function Login() {
   const LoginForm = [

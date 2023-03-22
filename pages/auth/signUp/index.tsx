@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Center } from '@chakra-ui/react';
 import FormInput from '@/components/@common/formInput';
 import FormButton from '@/components/@common/formButton';
-import ImgAddForm from '@/components/auth/ImgAddForm';
+import ImgAddForm from '@/components/auth/imgAddForm';
 
 export default function SignUp() {
   const SignUpForm = [

@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import { Box, Center, Icon } from '@chakra-ui/react';
 import { HiOutlinePlus } from 'react-icons/hi';
-import defaultImage from '/public/profile-user.png';
+import defaultImage from '/public/default-img.png';
 
-export default function ImgAddForm() {
+export default function FeedImgAddForm() {
   const [imagePreview, setImagePreview] = useState<any>(defaultImage);
 
   const addPreviewImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,8 +31,8 @@ export default function ImgAddForm() {
     width: 28px;
     height: 28px;
     position: absolute;
-    top: 0;
-    right: 100px;
+    top: -12px;
+    right: -12px;
     background-color: ${({ theme }) => theme.colors.primary};
     border-radius: 50%;
     display: flex;
@@ -54,13 +54,13 @@ export default function ImgAddForm() {
             <Icon as={HiOutlinePlus} color="white" />
           </Badge>
           <Center>
-            <Box w={'100px'} h={'100px'} position="relative">
+            <Box w={'300px'} h={'300px'} position="relative">
               <Image
                 priority
                 src={imagePreview}
                 alt="profileImage"
                 fill
-                style={{ borderRadius: '50%', objectFit: 'cover', cursor: 'pointer' }}
+                style={{ borderRadius: '8px', objectFit: 'cover', cursor: 'pointer' }}
               />
             </Box>
           </Center>

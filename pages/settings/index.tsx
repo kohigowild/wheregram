@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Center } from '@chakra-ui/react';
-import ImgAddForm from '@/components/auth/ImgAddForm';
+import ImgAddForm from '@/components/auth/imgAddForm';
 import FormInput from '@/components/@common/formInput';
 import FormButton from '@/components/@common/formButton';
 
