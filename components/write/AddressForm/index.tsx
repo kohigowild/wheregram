@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import FormInput from '@/components/@common/FormInput';
+import FormInput from '@/components/@common/formInput';
 import { callAddress } from '@/api/location/callAddress';
 import { AddressType } from '@/interfaces/location';
 

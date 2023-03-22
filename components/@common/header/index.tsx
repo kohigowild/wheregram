@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Center } from '@chakra-ui/react';
 import { Icon } from '@chakra-ui/icons';
 import { RiSettings4Fill } from 'react-icons/ri';
-import Logo from '../@Header/Logo';
+import Logo from './logo';
 import styled from 'styled-components';
 
 export default function Header() {

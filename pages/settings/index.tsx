@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Center } from '@chakra-ui/react';
-import ImgAddForm from '@/components/auth/ImgAddForm';
-import FormInput from '@/components/@common/FormInput';
-import FormButton from '@/components/@common/FormButton';
+import ImgAddForm from '@/components/auth/imgAddForm';
+import FormInput from '@/components/@common/formInput';
+import FormButton from '@/components/@common/formButton';
 
 export default function index() {
   const inputProps = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import FeedCard from '@/components/@common/FeedCard';
+import FeedCard from '@/components/@common/feedCard';
 import lunch from '/public/images/lunch.jpg';
 import pool from '/public/images/pool.jpg';
 import flower from '/public/images/flower.jpg';

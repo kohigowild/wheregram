@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AddressForm from '@/components/write/AddressForm';
-import MapContainer from '@/components/write/MapContainer';
-import FeedImgAddForm from '@/components/write/FeedImgAddForm';
-import Rating from '@/components/write/Rating';
-import FormButton from '@/components/@common/FormButton';
+import AddressForm from '@/components/write/addressForm';
+import MapContainer from '@/components/write/mapContainer';
+import FeedImgAddForm from '@/components/write/feedImgAddForm';
+import Rating from '@/components/write/rating';
+import FormButton from '@/components/@common/formButton';
 import { Center, Textarea } from '@chakra-ui/react';
 import { LocationType } from '@/interfaces/location';
 
