@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import styled from 'styled-components';
+import { FormContainer, Badge, AddInput } from '@/styles/auth/signUp';
 import { Box, Center, Icon } from '@chakra-ui/react';
 import { HiOutlinePlus } from 'react-icons/hi';
 import defaultImage from '/public/profile-user.png';
+import { uploadImage } from '@/api/feed/uploadImage';
+import { photoUpload } from '@/interfaces/auth';
 
-export default function ImgAddForm() {
+export default function ImgAddForm({ imageURL, setImageURL }: photoUpload) {
   const [imagePreview, setImagePreview] = useState<any>(defaultImage);
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      const parsedUserInfo = JSON.parse(userInfo);
+      setImagePreview(parsedUserInfo.photoURL);
+    }
+  }, []);
 
   const addPreviewImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files!;
@@ -23,28 +33,11 @@ export default function ImgAddForm() {
     }
   };
 
-  const FormContainer = styled.form`
-    position: relative;
-  `;
-
-  const Badge = styled.div`
-    width: 28px;
-    height: 28px;
-    position: absolute;
-    top: 0;
-    right: 100px;
-    background-color: ${({ theme }) => theme.colors.primary};
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 9999;
-  `;
-
-  const AddInput = styled.input`
-    visibility: hidden;
-  `;
+  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    addPreviewImage(e);
+    uploadImage(e, setImageURL);
+    console.log(imageURL);
+  };
 
   return (
     <>
@@ -65,13 +58,7 @@ export default function ImgAddForm() {
             </Box>
           </Center>
         </label>
-        <AddInput
-          type="file"
-          id="add-profile"
-          name="add-profile"
-          accept="image/*"
-          onChange={(e) => addPreviewImage(e)}
-        />
+        <AddInput type="file" id="add-profile" name="add-profile" accept="image/*" onChange={handleChangeImage} />
       </FormContainer>
     </>
   );

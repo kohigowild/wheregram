@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import { notoSansKrLight } from './font/notoSansKr';
+import { notoSansKrLight } from './@common/font/notoSansKr';
 
 const GlobalStyle = createGlobalStyle`
   ${reset};

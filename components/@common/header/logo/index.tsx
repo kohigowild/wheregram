@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { Flex } from '@chakra-ui/react';
-import { poppinsExtraBold } from '@/styles/font/poppins';
+import { poppinsExtraBold } from '@/styles/@common/font/poppins';
 
 export default function Logo() {
   const LogoTitle = styled.div`

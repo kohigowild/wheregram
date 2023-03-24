@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Center } from '@chakra-ui/react';
-import FormInput from '@/components/@common/formInput';
+import { Input } from '@chakra-ui/react';
 import CardList from '@/components/@common/cardList';
 
 export default function Search() {
@@ -20,7 +20,7 @@ export default function Search() {
   return (
     <Center>
       <Form>
-        <FormInput props={searchProps} />
+        <Input />
         <CardList />
       </Form>
     </Center>

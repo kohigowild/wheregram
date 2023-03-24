@@ -1,65 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Center } from '@chakra-ui/react';
+import React, { useState, useEffect } from 'react';
+import { Center, Box } from '@chakra-ui/react';
 import FeedCard from '@/components/@common/feedCard';
-import lunch from '/public/images/lunch.jpg';
-import pool from '/public/images/pool.jpg';
-import flower from '/public/images/flower.jpg';
-import tako from '/public/images/tako.jpg';
+import { getExploreDoc } from '@/api/feed/getDoc';
+import { FeedListType } from '@/interfaces/feed';
 
-export default function index() {
-  const CardInfo = [
-    {
-      id: 0,
-      name: 'trustmitt',
-      location: '전라남도 여수시',
-      img: pool,
-      like: 34,
-      rating: '4.0',
-      desc: '좋아요',
-    },
-    {
-      id: 1,
-      name: 'trustmitt',
-      location: '전라남도 여수시',
-      img: lunch,
-      like: 34,
-      rating: '4.0',
-      desc: '좋아요',
-    },
-    {
-      id: 2,
-      name: 'trustmitt',
-      location: '전라남도 여수시',
-      img: flower,
-      like: 34,
-      rating: '4.0',
-      desc: '좋아요',
-    },
-    {
-      id: 3,
-      name: 'trustmitt',
-      location: '전라남도 여수시',
-      img: tako,
-      like: 34,
-      rating: '4.0',
-      desc: '좋아요',
-    },
-  ];
+export default function Explore() {
+  const [feedList, setFeedList] = useState<FeedListType[]>([]);
 
-  const Form = styled.div`
-    width: 360px;
-    padding: 3vh 0;
-  `;
+  useEffect(() => {
+    getExploreDoc(setFeedList);
+  }, []);
 
   // 연동 후 무한 스크롤 구현
   return (
     <Center>
-      <Form>
-        {CardInfo.map((card) => (
-          <FeedCard card={card} key={card.id} />
+      <Box w="360px" padding="3vh 0">
+        {feedList.map((card, index) => (
+          <FeedCard card={card} key={index} />
         ))}
-      </Form>
+      </Box>
     </Center>
   );
 }

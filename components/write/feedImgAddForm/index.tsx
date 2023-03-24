@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import styled from 'styled-components';
+import { FormContainer, Badge, AddInput } from '@/styles/write/write';
 import { Box, Center, Icon } from '@chakra-ui/react';
 import { HiOutlinePlus } from 'react-icons/hi';
 import defaultImage from '/public/default-img.png';
+import { uploadImage } from '@/api/feed/uploadImage';
+import { photoUpload } from '@/interfaces/auth';
 
-export default function FeedImgAddForm() {
+export default function FeedImgAddForm({ imageURL, setImageURL }: photoUpload) {
   const [imagePreview, setImagePreview] = useState<any>(defaultImage);
 
   const addPreviewImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,28 +25,11 @@ export default function FeedImgAddForm() {
     }
   };
 
-  const FormContainer = styled.form`
-    position: relative;
-  `;
-
-  const Badge = styled.div`
-    width: 28px;
-    height: 28px;
-    position: absolute;
-    top: -12px;
-    right: -12px;
-    background-color: ${({ theme }) => theme.colors.primary};
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 9999;
-  `;
-
-  const AddInput = styled.input`
-    visibility: hidden;
-  `;
+  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    addPreviewImage(e);
+    uploadImage(e, setImageURL);
+    console.log(imageURL);
+  };
 
   return (
     <>
@@ -65,13 +50,7 @@ export default function FeedImgAddForm() {
             </Box>
           </Center>
         </label>
-        <AddInput
-          type="file"
-          id="add-profile"
-          name="add-profile"
-          accept="image/*"
-          onChange={(e) => addPreviewImage(e)}
-        />
+        <AddInput type="file" id="add-profile" name="add-profile" accept="image/*" onChange={handleChangeImage} />
       </FormContainer>
     </>
   );

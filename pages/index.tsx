@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styled, { keyframes } from 'styled-components';
 import { Center, Tag } from '@chakra-ui/react';
 import FeedCard from '@/components/@common/feedCard';
-import { notoSansKrMedium } from '@/styles/font/notoSansKr';
+import { notoSansKrMedium } from '@/styles/@common/font/notoSansKr';
 import lunch from '/public/images/lunch.jpg';
 import pool from '/public/images/pool.jpg';
 import flower from '/public/images/flower.jpg';

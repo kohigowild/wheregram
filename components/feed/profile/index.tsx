@@ -1,36 +1,35 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import { Title, Desc } from '@/styles/feed/feed';
 import Image from 'next/image';
 import { Flex, Box, Badge } from '@chakra-ui/react';
 import defaultImage from '/public/profile-user.png';
 
 export default function Profile() {
-  const Title = styled.div`
-    margin-bottom: 12px;
-    font-size: 20px;
-    font-weight: 500;
-    color: ${({ theme }) => theme.colors.textColor};
-  `;
+  const [nickname, setNickname] = useState<string>('');
+  const [photoURL, setPhotoURL] = useState<string>('');
 
-  const Desc = styled.div`
-    display: flex;
-    font-size: 12px;
-    color: ${({ theme }) => theme.colors.textColor};
-  `;
+  useEffect(() => {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      const parsedUserInfo = JSON.parse(userInfo);
+      setNickname(parsedUserInfo.displayName);
+      setPhotoURL(parsedUserInfo.photoURL);
+    }
+  }, []);
 
   return (
     <Flex align={'center'} mb="20px">
       <Box w={'100px'} h={'100px'} position="relative">
         <Image
           priority
-          src={defaultImage}
+          src={photoURL ? photoURL : defaultImage}
           alt="profileImage"
           fill
           style={{ borderRadius: '50%', objectFit: 'cover', cursor: 'pointer' }}
         />
       </Box>
       <Box ml={'32px'}>
-        <Title>trustmitt</Title>
+        <Title>{nickname}</Title>
         <Flex>
           <Desc style={{ marginRight: '12px' }}>
             게시글

@@ -1,32 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
+import { RatingContainer, Desc, Highlight } from '@/styles/write/write';
 import { Flex, Spacer, Icon } from '@chakra-ui/react';
 import { HiStar } from 'react-icons/hi';
+import { RatingType } from '@/interfaces/feed';
 
-export default function Rating() {
-  const [ratingIndex, setRatingIndex] = useState(0);
+export default function Rating({ rating, setRating }: RatingType) {
   const ArrayIndexes = [1, 2, 3, 4, 5];
-
-  const RatingContainer = styled.div`
-    display: flex;
-    .inactive {
-      color: ${({ theme }) => theme.colors.textColor};
-    }
-    .active {
-      color: ${({ theme }) => theme.colors.primary};
-    }
-  `;
-
-  const Desc = styled.div`
-    font-size: 14px;
-    display: flex;
-    color: ${({ theme }) => theme.colors.textColor};
-  `;
-
-  const Highlight = styled.div`
-    margin: 0 4px;
-    color: ${({ theme }) => theme.colors.primary};
-  `;
 
   return (
     <Flex mb="20px">
@@ -37,14 +16,15 @@ export default function Rating() {
             w={5}
             h={5}
             key={idx}
-            className={idx <= ratingIndex ? 'active' : 'inactive'}
-            onClick={() => setRatingIndex(idx)}
+            className={idx <= rating ? 'active' : 'inactive'}
+            onClick={() => setRating(idx)}
+            cursor="pointer"
           />
         ))}
       </RatingContainer>
       <Spacer />
       <Desc>
-        이 장소에 별점을 <Highlight>{ratingIndex}점</Highlight> 줄래요.
+        이 장소에 별점을 <Highlight>{rating}점</Highlight> 줄래요.
       </Desc>
     </Flex>
   );

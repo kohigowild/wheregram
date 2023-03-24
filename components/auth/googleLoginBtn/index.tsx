@@ -1,33 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
 import { Center } from '@chakra-ui/react';
+import { GoogleLogin } from '@/styles/auth/login';
 import GoogleIcon from '/public/google-icon.png';
+import { useRecoilState } from 'recoil';
+import { userInfoState } from '@/states';
+import { SubmitGoogleLogin } from '@/api/auth/signIn';
 
 export default function GoogleLoginBtn() {
-  const GoogleLogin = styled.button`
-    position: relative;
-    margin-top: 20px;
-    width: 300px;
-    height: 40px;
-    border-radius: 12px;
-    border: 0;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    background-color: white;
-    color: ${({ theme }) => theme.colors.textColor};
-    box-shadow: #edf2f7 0px 10px 0px 0px;
+  const [userState, setUserState] = useRecoilState(userInfoState);
 
-    &:active {
-      background-color: white;
-      box-shadow: #e2e8f0 0px 0px 0px 0px;
-      transform: translateY(5px);
-      transition: 200ms;
-    }
-  `;
+  const handleGoogleLogin = () => {
+    SubmitGoogleLogin(setUserState);
+    console.log(userState);
+  };
 
   return (
-    <GoogleLogin>
+    <GoogleLogin onClick={handleGoogleLogin}>
       <Center>
         <Image
           src={GoogleIcon}
