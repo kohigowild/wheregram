@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Flex, Center, Icon, Box } from '@chakra-ui/react';
 import Comment from '../comment';
+import { Flex, Center, Icon, Box } from '@chakra-ui/react';
 import { UserName, UserLocation, Bold } from '@/styles/feed/feed';
 import { HiLocationMarker, HiStar } from 'react-icons/hi';
 import { TiHeartFullOutline } from 'react-icons/ti';
 import { FeedListCard } from '@/interfaces/feed';
+import defaultImage from '/public/profile-user.png';
 
 export default function FeedCard({ card, comment }: FeedListCard) {
   const [like, setLike] = useState<boolean>(false);
@@ -25,7 +26,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
           <Flex w="90vw" mb={4} align="center">
             <Box position="relative" w="56px" h="56px" mr="12px">
               <Image
-                src={card.profileURL}
+                src={card.profileURL ? card.profileURL : defaultImage}
                 alt={card.nickname}
                 fill
                 style={{
