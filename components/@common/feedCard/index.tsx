@@ -1,18 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { Flex, Center, Avatar, Icon, Box } from '@chakra-ui/react';
+import { Flex, Center, Icon, Box } from '@chakra-ui/react';
+import Comment from '../comment';
 import { UserName, UserLocation, Bold } from '@/styles/feed/feed';
 import { HiLocationMarker, HiStar } from 'react-icons/hi';
 import { TiHeartFullOutline } from 'react-icons/ti';
 import { FeedListCard } from '@/interfaces/feed';
 
-export default function FeedCard({ card }: FeedListCard) {
+export default function FeedCard({ card, comment }: FeedListCard) {
+  const [like, setLike] = useState<boolean>(false);
+  const [getLike, setGetLike] = useState<number>(card.like);
+
+  const handleLike = () => {
+    setLike(!like);
+    {
+      like ? setGetLike(getLike - 1) : setGetLike(getLike + 1);
+    }
+  };
+
   return (
-    <Box w="360px" padding="4vh 0" borderRadius="16px" boxShadow="lg" backgroundColor="gray.50" mt="4vh">
-      <Box ml="5vw" mr="5vw">
+    <Box w="360px" padding="4vh 0" borderRadius="16px" boxShadow="lg" backgroundColor="gray.50" m="10px">
+      <Box ml="30px" mr="30px">
         <Center>
           <Flex w="90vw" mb={4} align="center">
-            <Avatar mr={2} />
+            <Box position="relative" w="56px" h="56px" mr="12px">
+              <Image
+                src={card.profileURL}
+                alt={card.nickname}
+                fill
+                style={{
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                }}
+              />
+            </Box>
             <div>
               <UserName>{card.nickname}</UserName>
               <UserLocation>
@@ -22,34 +43,43 @@ export default function FeedCard({ card }: FeedListCard) {
             </div>
           </Flex>
         </Center>
-        <Center mb={2}>
+        <Center mb={2} w="300px" h="300px" position={'relative'}>
           <Image
             src={card.feedImageURL}
             alt={card.address}
-            width={300}
-            height={300}
+            fill
             style={{
               borderRadius: '8px',
-              objectFit: 'fill',
+              objectFit: 'cover',
             }}
           />
         </Center>
-        <Center mb={2}>
-          <Flex w="90vw" justify="space-between" align="center" color="gray.700">
-            좋아요 {card.like} 개
-            <Icon as={TiHeartFullOutline} mt={1} w={6} h={6} cursor="pointer" />
+        <Center mb="4px">
+          <Flex w="90vw" justify="space-between" align="center" color="gray.700" fontSize="14px">
+            좋아요 {getLike} 개
+            <Icon
+              as={TiHeartFullOutline}
+              mt={1}
+              w={6}
+              h={6}
+              cursor="pointer"
+              color={like ? 'green.400' : 'gray.400'}
+              onClick={handleLike}
+            />
           </Flex>
         </Center>
         <Center>
-          <Flex w="90vw" mb={2} color="green.400">
-            {card.addressDetail}에 <Icon as={HiStar} mt="6px" ml={1} mr={1} /> {card.rating}.0 점을 남겼어요.
+          <Flex w="90vw" mb={2} color="green.400" fontSize="14px">
+            {card.addressDetail ? card.addressDetail : '이 장소'}에 <Icon as={HiStar} mt="6px" ml={1} mr={1} />{' '}
+            {card.rating}.0 점을 남겼어요.
           </Flex>
         </Center>
         <Center>
-          <Flex w="90vw" mb={2} color="gray.700">
+          <Flex w="90vw" mb={2} color="gray.700" fontSize="14px">
             <Bold>{card.nickname}</Bold> {card.desc}
           </Flex>
         </Center>
+        {comment && <Comment />}
       </Box>
     </Box>
   );

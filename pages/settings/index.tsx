@@ -6,8 +6,13 @@ import ImgAddForm from '@/components/auth/imgAddForm';
 import AuthInput from '@/components/auth/authInput';
 import FormButton from '@/components/@common/formButton';
 import { updateUserInfo } from '@/api/auth/updateProfile';
+import { useRecoilState } from 'recoil';
+import { userInfoState } from '@/states';
 
 export default function Settings() {
+  const [userState, setUserState] = useRecoilState(userInfoState);
+  const [uid, setUid] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [photoURL, setPhotoURL] = useState<string>('');
 
@@ -25,17 +30,21 @@ export default function Settings() {
   };
 
   const updateUser = () => {
-    if (nickname !== '' || photoURL !== '') {
-      updateUserInfo(nickname, photoURL);
-    } else {
-      alert('변경된 정보가 없습니다.');
-    }
+    updateUserInfo(nickname, photoURL, uid, email);
+    setUserState({
+      uid: uid,
+      email: email,
+      displayName: nickname,
+      photoURL: photoURL,
+    });
   };
 
   useEffect(() => {
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
       const parsedUserInfo = JSON.parse(userInfo);
+      setUid(parsedUserInfo.uid);
+      setEmail(parsedUserInfo.email);
       setNickname(parsedUserInfo.displayName);
       setPhotoURL(parsedUserInfo.photoURL);
     }

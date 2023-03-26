@@ -1,89 +1,61 @@
 import Head from 'next/head';
-import styled, { keyframes } from 'styled-components';
-import { Center, Tag } from '@chakra-ui/react';
+import { Center, Tag, Box } from '@chakra-ui/react';
+import { Title, SlideList, SlideTrack } from '@/styles/root/root';
 import FeedCard from '@/components/@common/feedCard';
-import { notoSansKrMedium } from '@/styles/@common/font/notoSansKr';
-import lunch from '/public/images/lunch.jpg';
-import pool from '/public/images/pool.jpg';
-import flower from '/public/images/flower.jpg';
-import tako from '/public/images/tako.jpg';
 
 function Home() {
-  const Slide = keyframes`
-  5% {
-    transform: translateX(0)
-  }
-  40% {
-    transform: translateX(-100%)
-  }
-  70% {
-    transform: translateX(-200%)
-  }
-  100% {
-    transform: translateX(-300%)
-  }
-`;
-
-  const Title = styled.div`
-    padding: 6vh 0;
-    text-align: center;
-    color: ${({ theme }) => theme.colors.textColor};
-    font-family: ${notoSansKrMedium.style.fontFamily};
-    font-size: 16px;
-  `;
-
-  const SlideTrack = styled.div`
-    position: relative;
-    overflow: hidden;
-    width: 360px;
-  `;
-
-  const SlideList = styled.div`
-    display: flex;
-    animation: ${Slide} 12s 2s alternate infinite;
-  `;
-
-  const Form = styled.div`
-    width: 360px;
-    padding: 3vh 0;
-  `;
-
   const CardInfo = [
     {
-      id: 0,
-      name: 'trustmitt',
-      location: '전라남도 여수시',
-      img: pool,
-      like: 34,
-      rating: '4.0',
-      desc: '좋아요',
+      docId: '0',
+      address: '전라남도 여수시',
+      addressDetail: '여기가 어디지',
+      createAt: '',
+      desc: '제발 살려줘',
+      feedImageURL: 'https://i.pinimg.com/564x/44/cd/31/44cd31ca061bf9ea5e3b424490f50a73.jpg',
+      like: 392,
+      nickname: '탈락도ROcK이다',
+      profileURL: 'https://i.pinimg.com/564x/79/50/5b/79505b031fb97b848044ad0f4935cd98.jpg',
+      rating: 3,
+      uid: '',
     },
     {
-      id: 1,
-      name: 'trustmitt',
-      location: '전라남도 여수시',
-      img: lunch,
-      like: 34,
-      rating: '4.0',
-      desc: '좋아요',
+      docId: '2',
+      address: '충청북도 파리',
+      addressDetail: '에펠탑',
+      createAt: '',
+      desc: '👻',
+      feedImageURL: 'https://i.pinimg.com/564x/3f/83/91/3f8391d2a4229c03aa419d73fb552725.jpg',
+      like: 431,
+      nickname: '안알랴줌',
+      profileURL: 'https://i.pinimg.com/236x/3a/2f/0d/3a2f0dce4af1c1ae21d178d5af32b2b6.jpg',
+      rating: 3,
+      uid: '',
     },
     {
-      id: 2,
-      name: 'trustmitt',
-      location: '전라남도 여수시',
-      img: flower,
-      like: 34,
-      rating: '4.0',
-      desc: '좋아요',
+      docId: '1',
+      address: '서울특별시 동작구',
+      addressDetail: '',
+      createAt: '',
+      desc: '인생 최고로 가치 있던 천원',
+      feedImageURL: 'https://i.pinimg.com/236x/ff/0f/45/ff0f45384e7a2c537fc95da6e97e0fb5.jpg',
+      like: 803,
+      nickname: '이슬짱팬',
+      profileURL: 'https://i.pinimg.com/236x/1b/05/ce/1b05ce52aaed968236fa37110a711ab5.jpg',
+      rating: 5,
+      uid: '',
     },
     {
-      id: 3,
-      name: 'trustmitt',
-      location: '전라남도 여수시',
-      img: tako,
-      like: 34,
-      rating: '4.0',
-      desc: '좋아요',
+      docId: '4',
+      address: '부산광역시 북구',
+      addressDetail: '북구 갤러리',
+      createAt: '',
+      desc: '반 고흐 전시회 진짜 멋있었다!',
+      feedImageURL: 'https://i.pinimg.com/564x/dd/cd/ae/ddcdaeaeb96e18b46c9e27cc638ba429.jpg',
+      like: 2032,
+      nickname: '북구럽군요',
+      profileURL: 'https://i.pinimg.com/236x/ba/cb/29/bacb299fdc9fd501cd3f00c13204c56c.jpg',
+      rating: 3,
+      uid: '',
     },
   ];
 
@@ -94,7 +66,7 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Center>
-        <Form>
+        <Box>
           <Title>
             <p style={{ marginBottom: '4px' }}>
               <Tag colorScheme="green" borderRadius="full" m="0 4px">
@@ -112,12 +84,12 @@ function Home() {
             <SlideList>
               <Center>
                 {CardInfo.map((card) => (
-                  <FeedCard card={card} key={card.id} />
+                  <FeedCard card={card} comment={false} key={card.docId} />
                 ))}
               </Center>
             </SlideList>
           </SlideTrack>
-        </Form>
+        </Box>
       </Center>
     </>
   );

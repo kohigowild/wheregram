@@ -14,7 +14,7 @@ export const Desc = styled.div`
 `;
 
 export const UserName = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   color: ${({ theme }) => theme.colors.textColor};
 `;
 

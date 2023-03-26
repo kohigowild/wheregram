@@ -16,7 +16,7 @@ export default function Explore() {
     <Center>
       <Box w="360px" padding="3vh 0">
         {feedList.map((card, index) => (
-          <FeedCard card={card} key={index} />
+          <FeedCard card={card} comment={true} key={index} />
         ))}
       </Box>
     </Center>

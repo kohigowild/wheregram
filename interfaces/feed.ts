@@ -20,6 +20,7 @@ export interface RatingType {
 }
 
 export interface FeedListType {
+  docId: string;
   address: string;
   addressDetail: string;
   createAt: string;
@@ -34,4 +35,9 @@ export interface FeedListType {
 
 export interface FeedListCard {
   card: FeedListType;
+  comment: boolean;
+}
+
+export interface FeedListArray {
+  feedList: FeedListType[];
 }

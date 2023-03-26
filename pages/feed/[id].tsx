@@ -1,34 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import FeedCard from '@/components/@common/feedCard';
-import Comment from '@/components/@common/comment';
-import { FeedData } from '@/interfaces/feed';
+import { FeedListType } from '@/interfaces/feed';
 import { Center } from '@chakra-ui/react';
-import pool from '/public/images/pool.jpg';
+import { getFeedDetail } from '@/api/feed/getDoc';
 
 export default function Detail() {
-  const [card, setCard] = useState<FeedData | null>(null);
-
-  const tmp = {
-    id: 0,
-    name: 'trustmitt',
-    location: '전라남도 여수시',
-    img: pool,
-    like: 34,
-    rating: '4.0',
-    desc: '좋아요',
-  };
+  const router = useRouter();
+  const id: any = router.query.id;
+  const [card, setCard] = useState<FeedListType[] | null>(null);
 
   useEffect(() => {
-    setCard(tmp);
+    {
+      id && getFeedDetail(id, setCard);
+    }
   }, []);
 
   return (
     <>
       <Center>
-        {card && <FeedCard card={card} />}
-        <Center>
-          <Comment />
-        </Center>
+        {card && <FeedCard card={card[0]} comment={true} />}
+        <Center></Center>
       </Center>
     </>
   );
