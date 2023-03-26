@@ -14,7 +14,9 @@ export default function ImgAddForm({ imageURL, setImageURL }: photoUpload) {
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
       const parsedUserInfo = JSON.parse(userInfo);
-      setImagePreview(parsedUserInfo.photoURL);
+      {
+        parsedUserInfo.photoURL && setImagePreview(parsedUserInfo.photoURL);
+      }
     }
   }, []);
 
