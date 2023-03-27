@@ -80,7 +80,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
             <Bold>{card.nickname}</Bold> {card.desc}
           </Flex>
         </Center>
-        {comment && <Comment />}
+        {comment && <Comment docId={card.docId} />}
       </Box>
     </Box>
   );

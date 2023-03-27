@@ -41,3 +41,15 @@ export interface FeedListCard {
 export interface FeedListArray {
   feedList: FeedListType[];
 }
+
+export interface DocId {
+  docId: string;
+}
+
+export interface CommentType {
+  uid: string;
+  nickname: string;
+  comment: string;
+  createAt: string;
+  commentId: string;
+}
