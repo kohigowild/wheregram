@@ -8,6 +8,11 @@ export const validatePassword = (password: string) => {
   return passwordRegex.test(password);
 };
 
+export const validateNickname = (nickname: string) => {
+  const nicknameRegex = /^.{2,8}$/;
+  return nicknameRegex.test(nickname);
+};
+
 export const removeWhitespace = (text: string) => {
   const regex = /\s/g;
   return text.replace(regex, '');

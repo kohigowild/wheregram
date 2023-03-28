@@ -5,7 +5,7 @@ import AuthInput from '@/components/auth/authInput';
 import ErrorMsg from '@/components/auth/errorMsg';
 import ImgAddForm from '@/components/auth/imgAddForm';
 import { createUser } from '@/api/auth/createUser';
-import { validateEmail, validatePassword, removeWhitespace } from '@/hooks/regex';
+import { validateEmail, validatePassword, validateNickname, removeWhitespace } from '@/hooks/regex';
 
 export default function SignUp() {
   const [imageURL, setImageURL] = useState<string>('');
@@ -20,27 +20,29 @@ export default function SignUp() {
   const handleChangeEmail = (str: string) => {
     const changedEmail = removeWhitespace(str);
     setEmail(changedEmail);
-    setErrorMsg(validateEmail(changedEmail) ? '다음 정보를 입력하세요.' : '이메일을 확인해 주세요.');
+    !validateEmail(changedEmail) ? setErrorMsg('이메일을 확인해 주세요.') : setErrorMsg('다음 정보를 입력하세요.');
   };
 
   // 패스워드 유효성 검증
   const handleChangePassword = (str: string) => {
     const changedPassword = removeWhitespace(str);
     setPassword(changedPassword);
-    setErrorMsg(
-      validatePassword(changedPassword) ? '다음 정보를 입력하세요.' : '문자와 숫자 조합으로 8글자 이상 입력해 주세요.',
-    );
+    !validatePassword(changedPassword)
+      ? setErrorMsg('문자와 숫자 조합으로 8글자 이상 입력해 주세요.')
+      : setErrorMsg('다음 정보를 입력하세요.');
   };
 
   const handleChangePasswordConfirm = (str: string) => {
     const passwordConfirmCurrent = removeWhitespace(str);
     setPasswordConfirm(passwordConfirmCurrent);
-    setErrorMsg(password === passwordConfirmCurrent ? '다음 정보를 입력하세요.' : '비밀번호가 일치하지 않습니다.');
+    password !== passwordConfirmCurrent
+      ? setErrorMsg('비밀번호가 일치하지 않습니다.')
+      : setErrorMsg('다음 정보를 입력하세요.');
   };
 
   const handleChangeNickname = (str: string) => {
     setNickname(str);
-    setErrorMsg(nickname === '' ? '닉네임을 입력해 주세요' : '가입 가능합니다.');
+    !validateNickname(nickname) ? setErrorMsg('닉네임은 2~9글자로 입력해 주세요.') : setErrorMsg('가입 가능합니다.');
   };
 
   const SignUpForm = [
@@ -76,9 +78,13 @@ export default function SignUp() {
 
   useEffect(() => {
     {
-      errorMsg === '가입 가능합니다.' && email && password && setDisabled(false);
+      validateEmail(email) &&
+        validatePassword(password) &&
+        password === passwordConfirm &&
+        validateNickname(nickname) &&
+        setDisabled(false);
     }
-  }, [email, password, nickname, errorMsg]);
+  }, [email, password, passwordConfirm, nickname]);
 
   const handleCreateUser = () => {
     createUser(email, password, nickname, imageURL);

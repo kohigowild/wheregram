@@ -58,7 +58,7 @@ export default function Login() {
         <GoogleLoginBtn />
         <GoToSignUp>
           <p>아직 계정이 없으신가요?</p>
-          <Link href="/auth/signUp">
+          <Link href="/auth/signup">
             <p style={{ fontWeight: '600' }}>회원가입</p>
           </Link>
         </GoToSignUp>

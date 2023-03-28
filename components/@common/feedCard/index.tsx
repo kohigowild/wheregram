@@ -7,6 +7,7 @@ import { HiLocationMarker, HiStar } from 'react-icons/hi';
 import { TiHeartFullOutline } from 'react-icons/ti';
 import { FeedListCard } from '@/interfaces/feed';
 import defaultImage from '/public/profile-user.png';
+import defaultFeedImage from '/public/default-img.png';
 
 export default function FeedCard({ card, comment }: FeedListCard) {
   const [like, setLike] = useState<boolean>(false);
@@ -39,14 +40,14 @@ export default function FeedCard({ card, comment }: FeedListCard) {
               <UserName>{card.nickname}</UserName>
               <UserLocation>
                 <Icon as={HiLocationMarker} mr={1} mt={1} />
-                {card.address}
+                {card.address ? card.address : '장소를 입력하지 않았습니다.'}
               </UserLocation>
             </div>
           </Flex>
         </Center>
         <Center mb={2} w="300px" h="300px" position={'relative'}>
           <Image
-            src={card.feedImageURL}
+            src={card.feedImageURL ? card.feedImageURL : defaultFeedImage}
             alt={card.address}
             fill
             style={{
