@@ -1,5 +1,5 @@
 import { db } from '../@common/firebase';
-import { collection, addDoc, doc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, updateDoc, setDoc } from 'firebase/firestore';
 import Router from 'next/router';
 
 export const createDoc = async (
@@ -29,7 +29,10 @@ export const createDoc = async (
     await updateDoc(docIdRef, {
       docId: docRef.id,
     });
-    Router.push('/feed');
+    await setDoc(doc(db, `user/${uid}/feed`, docRef.id), {
+      docId: docRef.id,
+    });
+    Router.push('/profile');
   } catch (e) {
     console.error('Error adding document: ', e);
   }

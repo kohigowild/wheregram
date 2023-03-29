@@ -1,54 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Router from 'next/router';
+import { RootState } from '@/store';
+import { useAppSelector, useAppDispatch } from '@/store';
+import { setLogin, setLogout } from '@/store/modules/user';
 import { Center, Box } from '@chakra-ui/react';
 import { Text } from '@/styles/settings/settings';
 import ImgAddForm from '@/components/auth/imgAddForm';
 import AuthInput from '@/components/auth/authInput';
 import FormButton from '@/components/@common/formButton';
 import { updateUserInfo } from '@/api/auth/updateProfile';
-import { useRecoilState } from 'recoil';
-import { userInfoState } from '@/states';
 
 export default function Settings() {
-  const [userState, setUserState] = useRecoilState(userInfoState);
-  const [uid, setUid] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const dispatch = useAppDispatch();
+  const uid = useAppSelector((state: RootState) => state.user.uid);
+  const email = useAppSelector((state: RootState) => state.user.email);
+  const defaultNickname = useAppSelector((state: RootState) => state.user.nickname);
   const [nickname, setNickname] = useState<string>('');
   const [photoURL, setPhotoURL] = useState<string>('');
 
   const inputProps = {
     id: 0,
-    placeholder: 'change nickname',
+    placeholder: defaultNickname,
     type: 'text',
     value: nickname,
     setValue: setNickname,
   };
 
   const handleLogOut = () => {
-    localStorage.removeItem('userInfo');
+    dispatch(setLogout());
     Router.push('/auth/login');
   };
 
   const updateUser = () => {
-    updateUserInfo(nickname, photoURL, uid, email);
-    setUserState({
-      uid: uid,
-      email: email,
-      displayName: nickname,
-      photoURL: photoURL,
-    });
+    updateUserInfo(uid, nickname, photoURL);
+    dispatch(
+      setLogin({
+        uid: uid,
+        email: email,
+        nickname: nickname,
+        photoURL: photoURL,
+      }),
+    );
   };
-
-  useEffect(() => {
-    const userInfo = localStorage.getItem('userInfo');
-    if (userInfo) {
-      const parsedUserInfo = JSON.parse(userInfo);
-      setUid(parsedUserInfo.uid);
-      setEmail(parsedUserInfo.email);
-      setNickname(parsedUserInfo.displayName);
-      setPhotoURL(parsedUserInfo.photoURL);
-    }
-  }, []);
 
   return (
     <Center w="100vw" h="80vh">

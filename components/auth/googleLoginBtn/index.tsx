@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
+import Router from 'next/router';
 import { Center } from '@chakra-ui/react';
 import { GoogleLogin } from '@/styles/auth/login';
+import { getUserInfo } from '@/api/auth/getUserInfo';
 import GoogleIcon from '/public/google-icon.png';
-import { useRecoilState } from 'recoil';
-import { userInfoState } from '@/states';
 import { SubmitGoogleLogin } from '@/api/auth/signIn';
+import { setLogin } from '@/store/modules/user';
+import { useAppDispatch } from '@/store';
 
 export default function GoogleLoginBtn() {
-  const [userState, setUserState] = useRecoilState(userInfoState);
+  const dispatch = useAppDispatch();
+  const [handleLogin, setHandleLogin] = useState<any>('');
 
-  const handleGoogleLogin = () => {
-    SubmitGoogleLogin(setUserState);
-    console.log(userState);
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await SubmitGoogleLogin();
+      dispatch(
+        setLogin({
+          uid: result.uid,
+          email: result.email,
+          nickname: result.displayName,
+          photoURL: result.photoURL ? result.photoURL : '',
+        }),
+      );
+      await getUserInfo(result.uid, setHandleLogin);
+      Router.push(handleLogin ? '/' : '/loading');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

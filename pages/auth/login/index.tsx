@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 import { Center, Box } from '@chakra-ui/react';
 import { Title, GoToSignUp } from '@/styles/auth/login';
 import AuthInput from '@/components/auth/authInput';
 import FormButton from '@/components/@common/formButton';
-import { useRecoilState } from 'recoil';
-import { userInfoState } from '@/states';
 import GoogleLoginBtn from '@/components/auth/googleLoginBtn';
 import { SubmitEmailLogin } from '@/api/auth/signIn';
+import { setLogin } from '@/store/modules/user';
+import { useAppDispatch } from '@/store';
 
 export default function Login() {
-  const [userState, setUserState] = useRecoilState(userInfoState);
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -39,9 +40,21 @@ export default function Login() {
     },
   ];
 
-  const signInWithEmail = () => {
-    SubmitEmailLogin(email, password, setUserState);
-    console.log(userState);
+  const signInWithEmail = async () => {
+    try {
+      const result = await SubmitEmailLogin(email, password);
+      dispatch(
+        setLogin({
+          uid: result.uid,
+          email: result.email,
+          nickname: result.displayName,
+          photoURL: result.photoURL,
+        }),
+      );
+      Router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

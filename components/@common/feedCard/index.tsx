@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Comment from '../comment';
+import { RootState } from '@/store';
+import { useAppSelector } from '@/store';
+import { likeFeed, unLikeFeed } from '@/api/feed/likeFeed';
 import { Flex, Center, Icon, Box } from '@chakra-ui/react';
 import { UserName, UserLocation, Bold } from '@/styles/feed/feed';
 import { HiLocationMarker, HiStar } from 'react-icons/hi';
 import { TiHeartFullOutline } from 'react-icons/ti';
-import { FeedListCard } from '@/interfaces/feed';
 import defaultImage from '/public/profile-user.png';
 import defaultFeedImage from '/public/default-img.png';
+import Comment from '../comment';
+import { FeedListCard } from '@/interfaces/feed';
 
-export default function FeedCard({ card, comment }: FeedListCard) {
-  const [like, setLike] = useState<boolean>(false);
+export default function FeedCard({ card, comment, findLike }: FeedListCard) {
+  const uid = useAppSelector((state: RootState) => state.user.uid);
+  const [sendLike, setSendLike] = useState<boolean>(findLike);
   const [getLike, setGetLike] = useState<number>(card.like);
 
+  const handleFeedLike = () => {
+    setGetLike(getLike + 1);
+    likeFeed(uid, card.docId, getLike + 1);
+  };
+
+  const handleFeedUnlike = () => {
+    setGetLike(getLike - 1);
+    unLikeFeed(uid, card.docId, getLike - 1);
+  };
+
   const handleLike = () => {
-    setLike(!like);
+    setSendLike(!sendLike);
     {
-      like ? setGetLike(getLike - 1) : setGetLike(getLike + 1);
+      sendLike ? handleFeedUnlike() : handleFeedLike();
     }
   };
 
@@ -65,7 +79,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
               w={6}
               h={6}
               cursor="pointer"
-              color={like ? 'green.400' : 'gray.400'}
+              color={sendLike ? 'green.400' : 'gray.400'}
               onClick={handleLike}
             />
           </Flex>
@@ -81,7 +95,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
             <Bold>{card.nickname}</Bold> {card.desc}
           </Flex>
         </Center>
-        {comment && <Comment docId={card.docId} />}
+        {comment && <Comment docId={card.docId} key={card.docId} />}
       </Box>
     </Box>
   );

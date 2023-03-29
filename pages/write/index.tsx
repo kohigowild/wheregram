@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { RootState } from '@/store';
+import { useAppSelector } from '@/store';
 import { Center, Textarea, Box } from '@chakra-ui/react';
 import MapContainer from '@/components/write/mapContainer';
 import WriteInput from '@/components/write/writeInput';
@@ -7,12 +9,12 @@ import Rating from '@/components/write/rating';
 import FormButton from '@/components/@common/formButton';
 import { callAddress } from '@/api/location/callAddress';
 import { createDoc } from '@/api/feed/createDoc';
-import { useRecoilState } from 'recoil';
-import { userInfoState } from '@/states';
 import { LocationType } from '@/interfaces/location';
 
 export default function Write() {
-  const [userState, setUserState] = useRecoilState(userInfoState);
+  const uid = useAppSelector((state: RootState) => state.user.uid);
+  const nickname = useAppSelector((state: RootState) => state.user.nickname);
+  const photoURL = useAppSelector((state: RootState) => state.user.photoURL);
   const [formState, setFormState] = useState<boolean>(false);
   const [position, setPosition] = useState<LocationType | null>(null);
   const [address, setAddress] = useState<string>('');
@@ -57,7 +59,7 @@ export default function Write() {
   ];
 
   const createFeed = () => {
-    createDoc(userState.uid, userState.photoURL, userState.displayName, address, addressDetail, imageURL, rating, desc);
+    createDoc(uid, photoURL, nickname, address, addressDetail, imageURL, rating, desc);
   };
 
   return (

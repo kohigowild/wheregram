@@ -34,6 +34,7 @@ export interface FeedListType {
 }
 
 export interface FeedListCard {
+  findLike: boolean;
   card: FeedListType;
   comment: boolean;
 }

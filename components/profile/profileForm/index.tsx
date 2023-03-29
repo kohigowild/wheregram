@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Title, Desc } from '@/styles/feed/feed';
+import React from 'react';
 import Image from 'next/image';
+import { RootState } from '@/store';
+import { useAppSelector } from '@/store';
+import { Title, Desc } from '@/styles/feed/feed';
 import { Flex, Box, Badge } from '@chakra-ui/react';
 import defaultImage from '/public/profile-user.png';
 
 export default function Profile() {
-  const [nickname, setNickname] = useState<string>('');
-  const [photoURL, setPhotoURL] = useState<string>('');
-
-  useEffect(() => {
-    const userInfo = localStorage.getItem('userInfo');
-    if (userInfo) {
-      const parsedUserInfo = JSON.parse(userInfo);
-      setNickname(parsedUserInfo.displayName);
-      setPhotoURL(parsedUserInfo.photoURL);
-    }
-  }, []);
+  const nickname = useAppSelector((state: RootState) => state.user.nickname);
+  const photoURL = useAppSelector((state: RootState) => state.user.photoURL);
 
   return (
     <Flex align={'center'} mb="20px">

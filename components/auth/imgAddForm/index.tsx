@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { RootState } from '@/store';
+import { useAppSelector, useAppDispatch } from '@/store';
 import { FormContainer, Badge, AddInput } from '@/styles/auth/signUp';
 import { Box, Center, Icon } from '@chakra-ui/react';
 import { HiOutlinePlus } from 'react-icons/hi';
@@ -8,16 +10,11 @@ import { uploadImage } from '@/api/feed/uploadImage';
 import { photoUpload } from '@/interfaces/auth';
 
 export default function ImgAddForm({ imageURL, setImageURL }: photoUpload) {
+  const defaultPhoto = useAppSelector((state: RootState) => state.user.photoURL);
   const [imagePreview, setImagePreview] = useState<any>(defaultImage);
 
   useEffect(() => {
-    const userInfo = localStorage.getItem('userInfo');
-    if (userInfo) {
-      const parsedUserInfo = JSON.parse(userInfo);
-      {
-        parsedUserInfo.photoURL && setImagePreview(parsedUserInfo.photoURL);
-      }
-    }
+    defaultPhoto !== '' && setImagePreview(defaultPhoto);
   }, []);
 
   const addPreviewImage = async (e: React.ChangeEvent<HTMLInputElement>) => {

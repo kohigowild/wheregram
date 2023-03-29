@@ -5,7 +5,6 @@ import { InputProps } from '@/interfaces/auth';
 export default function WriteInput({ item }: InputProps) {
   const handleChangeValue = (e: any) => {
     item.setValue(e.target.value);
-    console.log(item.value);
   };
 
   return (

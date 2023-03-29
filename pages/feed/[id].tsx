@@ -11,15 +11,13 @@ export default function Detail() {
   const [card, setCard] = useState<FeedListType[] | null>(null);
 
   useEffect(() => {
-    {
-      id && getFeedDetail(id, setCard);
-    }
+    getFeedDetail(id, setCard);
   }, []);
 
   return (
     <>
       <Center>
-        {card && <FeedCard card={card[0]} comment={true} />}
+        {card && <FeedCard card={card[0]} comment={true} findLike={false} />}
         <Center></Center>
       </Center>
     </>

@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { RootState } from '@/store';
+import { useAppSelector } from '@/store';
 import { Input } from '@chakra-ui/react';
 import { Box, Flex, Button } from '@chakra-ui/react';
 import { Bold } from '@/styles/feed/feed';
 import { createComment, getComment } from '@/api/feed/comment';
-import { useRecoilState } from 'recoil';
-import { userInfoState } from '@/states';
 import { DocId, CommentType } from '@/interfaces/feed';
 
 export default function Comment({ docId }: DocId) {
-  const [userState, setUserState] = useRecoilState(userInfoState);
+  const uid = useAppSelector((state: RootState) => state.user.uid);
+  const nickname = useAppSelector((state: RootState) => state.user.nickname);
   const [comment, setComment] = useState<string>('');
   const [getCommentList, setGetCommentList] = useState<CommentType[]>([]);
   const [sendComment, setSendTest] = useState<boolean>(false);
 
   const handleCreateComment = () => {
-    createComment(docId, userState.uid, userState.displayName, comment);
+    createComment(docId, uid, nickname, comment);
     setSendTest(!sendComment);
+    setComment('');
   };
 
   useEffect(() => {
@@ -26,9 +28,11 @@ export default function Comment({ docId }: DocId) {
   return (
     <Box>
       {getCommentList.map((comment) => (
-        <Flex w="90vw" mb={2} color="gray.700" fontSize="14px" key={comment.commentId}>
-          <Bold>{comment.nickname}</Bold> {comment.comment}
-        </Flex>
+        <div key={comment.commentId}>
+          <Flex w="90vw" mb={2} color="gray.700" fontSize="14px">
+            <Bold>{comment.nickname}</Bold> {comment.comment}
+          </Flex>
+        </div>
       ))}
       <Flex>
         <Input
@@ -36,6 +40,7 @@ export default function Comment({ docId }: DocId) {
           focusBorderColor="green.400"
           borderColor="gray.400"
           onChange={(e) => setComment(e.target.value)}
+          value={comment}
         />
         <Button colorScheme="green" ml="8px" onClick={handleCreateComment}>
           등록
