@@ -46,7 +46,7 @@ export default function Loading() {
           mb="16px"
           onChange={(e) => setNickname(e.target.value)}
         />
-        <FormButton props={'시작하기'} event={setGoogleUserProfile} disabled={false} />
+        <FormButton props={'시작하기'} event={setGoogleUserProfile} disabled={nickname === '' ? true : false} />
       </Box>
     </Center>
   );

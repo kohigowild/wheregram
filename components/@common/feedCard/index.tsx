@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { RootState } from '@/store';
 import { useAppSelector } from '@/store';
@@ -12,9 +12,10 @@ import defaultFeedImage from '/public/default-img.png';
 import Comment from '../comment';
 import { FeedListCard } from '@/interfaces/feed';
 
-export default function FeedCard({ card, comment, findLike }: FeedListCard) {
+export default function FeedCard({ card, comment }: FeedListCard) {
   const uid = useAppSelector((state: RootState) => state.user.uid);
-  const [sendLike, setSendLike] = useState<boolean>(findLike);
+  const likelist = useAppSelector((state: RootState) => state.like);
+  const [sendLike, setSendLike] = useState<boolean>(false);
   const [getLike, setGetLike] = useState<number>(card.like);
 
   const handleFeedLike = () => {
@@ -33,6 +34,12 @@ export default function FeedCard({ card, comment, findLike }: FeedListCard) {
       sendLike ? handleFeedUnlike() : handleFeedLike();
     }
   };
+
+  useEffect(() => {
+    likelist.map((el: any) => {
+      el.docId === card.docId && setSendLike(true);
+    });
+  });
 
   return (
     <Box w="360px" padding="4vh 0" borderRadius="16px" boxShadow="lg" backgroundColor="gray.50" m="10px">

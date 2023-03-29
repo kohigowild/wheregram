@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { RootState } from '@/store';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { setLogin, setLogout } from '@/store/modules/user';
+import { initLike } from '@/store/modules/like';
 import { Center, Box } from '@chakra-ui/react';
 import { Text } from '@/styles/settings/settings';
 import ImgAddForm from '@/components/auth/imgAddForm';
@@ -28,6 +29,7 @@ export default function Settings() {
 
   const handleLogOut = () => {
     dispatch(setLogout());
+    dispatch(initLike());
     Router.push('/auth/login');
   };
 

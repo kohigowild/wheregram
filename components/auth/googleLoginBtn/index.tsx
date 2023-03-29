@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Router from 'next/router';
+import { RootState } from '@/store';
+import { useAppSelector } from '@/store';
 import { Center } from '@chakra-ui/react';
 import { GoogleLogin } from '@/styles/auth/login';
-import { getUserInfo } from '@/api/auth/getUserInfo';
 import GoogleIcon from '/public/google-icon.png';
 import { SubmitGoogleLogin } from '@/api/auth/signIn';
 import { setLogin } from '@/store/modules/user';
 import { useAppDispatch } from '@/store';
 
 export default function GoogleLoginBtn() {
+  const nickname = useAppSelector((state: RootState) => state.user.uid);
   const dispatch = useAppDispatch();
-  const [handleLogin, setHandleLogin] = useState<any>('');
 
   const handleGoogleLogin = async () => {
     try {
@@ -24,8 +25,7 @@ export default function GoogleLoginBtn() {
           photoURL: result.photoURL ? result.photoURL : '',
         }),
       );
-      await getUserInfo(result.uid, setHandleLogin);
-      Router.push(handleLogin ? '/' : '/loading');
+      await Router.push(nickname === '' ? '/' : '/loading');
     } catch (error) {
       console.log(error);
     }
