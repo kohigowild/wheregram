@@ -21,6 +21,7 @@ export const UserName = styled.div`
 export const Bold = styled.div`
   font-weight: 600;
   margin-right: 4px;
+  color: ${({ theme }) => theme.colors.textColor};
 `;
 
 export const UserLocation = styled.div`

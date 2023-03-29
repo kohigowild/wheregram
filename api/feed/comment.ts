@@ -1,5 +1,5 @@
 import { db } from '../@common/firebase';
-import { query, collection, addDoc, doc, updateDoc, getDocs, orderBy } from 'firebase/firestore';
+import { query, collection, addDoc, doc, updateDoc, getDocs, orderBy, deleteDoc } from 'firebase/firestore';
 
 export const createComment = async (docId: string, uid: string, nickname: string | null, comment: string) => {
   try {
@@ -26,4 +26,9 @@ export const getComment = async (docId: string, setState: any) => {
       ...doc.data(),
     })),
   );
+};
+
+export const deleteComment = async (docId: string, commentId: string) => {
+  const feedComment = doc(db, `feed/${docId}/comment`, commentId);
+  await deleteDoc(feedComment);
 };

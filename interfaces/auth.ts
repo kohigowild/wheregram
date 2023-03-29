@@ -22,12 +22,18 @@ export interface ErrorMsgType {
 
 export interface UserInfo {
   uid: string;
-  email: string | null;
-  displayName: string | null;
+  email: string;
+  displayName: string;
   photoURL: string | null;
 }
 
 export interface photoUpload {
   imageURL: string;
   setImageURL: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface profileProps {
+  nickname: string;
+  email: string;
+  photoURL: string | null;
 }

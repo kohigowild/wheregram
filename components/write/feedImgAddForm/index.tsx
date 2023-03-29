@@ -28,7 +28,6 @@ export default function FeedImgAddForm({ imageURL, setImageURL }: photoUpload) {
   const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     addPreviewImage(e);
     uploadImage(e, setImageURL);
-    console.log(imageURL);
   };
 
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { RootState } from '@/store';
-import { useAppSelector, useAppDispatch } from '@/store';
+import { useAppSelector } from '@/store';
 import { FormContainer, Badge, AddInput } from '@/styles/auth/signUp';
 import { Box, Center, Icon } from '@chakra-ui/react';
 import { HiOutlinePlus } from 'react-icons/hi';
@@ -35,7 +35,6 @@ export default function ImgAddForm({ imageURL, setImageURL }: photoUpload) {
   const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     addPreviewImage(e);
     uploadImage(e, setImageURL);
-    console.log(imageURL);
   };
 
   return (

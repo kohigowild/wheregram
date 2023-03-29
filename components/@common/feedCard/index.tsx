@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import Router from 'next/router';
 import { RootState } from '@/store';
 import { useAppSelector } from '@/store';
 import { likeFeed, unLikeFeed } from '@/api/feed/likeFeed';
-import { Flex, Center, Icon, Box } from '@chakra-ui/react';
+import { deleteFeed } from '@/api/feed/deleteDoc';
+import { Flex, Center, Icon, Box, useToast, CloseButton } from '@chakra-ui/react';
 import { UserName, UserLocation, Bold } from '@/styles/feed/feed';
 import { HiLocationMarker, HiStar } from 'react-icons/hi';
 import { TiHeartFullOutline } from 'react-icons/ti';
@@ -13,6 +16,7 @@ import Comment from '../comment';
 import { FeedListCard } from '@/interfaces/feed';
 
 export default function FeedCard({ card, comment }: FeedListCard) {
+  const toast = useToast();
   const uid = useAppSelector((state: RootState) => state.user.uid);
   const likelist = useAppSelector((state: RootState) => state.like);
   const [sendLike, setSendLike] = useState<boolean>(false);
@@ -35,6 +39,18 @@ export default function FeedCard({ card, comment }: FeedListCard) {
     }
   };
 
+  const handleFeedDelete = () => {
+    deleteFeed(uid, card.docId);
+    toast({
+      title: '삭제 알림',
+      description: '피드를 삭제했습니다.',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    });
+    Router.push('/explore');
+  };
+
   useEffect(() => {
     likelist.map((el: any) => {
       el.docId === card.docId && setSendLike(true);
@@ -44,7 +60,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
   return (
     <Box w="360px" padding="4vh 0" borderRadius="16px" boxShadow="lg" backgroundColor="gray.50" m="10px">
       <Box ml="30px" mr="30px">
-        <Center>
+        <Center position="relative">
           <Flex w="90vw" mb={4} align="center">
             <Box position="relative" w="56px" h="56px" mr="12px">
               <Image
@@ -57,14 +73,19 @@ export default function FeedCard({ card, comment }: FeedListCard) {
                 }}
               />
             </Box>
-            <div>
-              <UserName>{card.nickname}</UserName>
+            <Box>
+              <Link href={`/profile/${card.uid}`}>
+                <UserName>{card.nickname}</UserName>
+              </Link>
               <UserLocation>
                 <Icon as={HiLocationMarker} mr={1} mt={1} />
                 {card.address ? card.address : '장소를 입력하지 않았습니다.'}
               </UserLocation>
-            </div>
+            </Box>
           </Flex>
+          {card.uid === uid && (
+            <CloseButton size="sm" position="absolute" top="8px" right="8px" onClick={handleFeedDelete} />
+          )}
         </Center>
         <Center mb={2} w="300px" h="300px" position={'relative'}>
           <Image
@@ -99,7 +120,10 @@ export default function FeedCard({ card, comment }: FeedListCard) {
         </Center>
         <Center>
           <Flex w="90vw" mb={2} color="gray.700" fontSize="14px">
-            <Bold>{card.nickname}</Bold> {card.desc}
+            <Link href={`/profile/${card.uid}`}>
+              <Bold>{card.nickname}</Bold>
+            </Link>
+            {card.desc}
           </Flex>
         </Center>
         {comment && <Comment docId={card.docId} key={card.docId} />}

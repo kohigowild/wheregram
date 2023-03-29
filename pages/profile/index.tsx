@@ -9,6 +9,9 @@ import { userFeedList } from '@/api/feed/getDoc';
 
 export default function Feed() {
   const uid = useAppSelector((state: RootState) => state.user.uid);
+  const nickname = useAppSelector((state: RootState) => state.user.nickname);
+  const email = useAppSelector((state: RootState) => state.user.email);
+  const photoURL = useAppSelector((state: RootState) => state.user.photoURL);
   const [feedList, setFeedList] = useState<FeedListType[]>([]);
 
   useEffect(() => {
@@ -18,7 +21,7 @@ export default function Feed() {
   return (
     <Center>
       <Box w="300px" padding="1vh 0">
-        <Profile />
+        <Profile nickname={nickname} photoURL={photoURL} email={email} />
         <CardList feedList={feedList} />
       </Box>
     </Center>

@@ -17,7 +17,7 @@ export default function Settings() {
   const email = useAppSelector((state: RootState) => state.user.email);
   const defaultNickname = useAppSelector((state: RootState) => state.user.nickname);
   const [nickname, setNickname] = useState<string>('');
-  const [photoURL, setPhotoURL] = useState<string>('');
+  const [imageURL, setImageURL] = useState<string>('');
 
   const inputProps = {
     id: 0,
@@ -34,13 +34,13 @@ export default function Settings() {
   };
 
   const updateUser = () => {
-    updateUserInfo(uid, nickname, photoURL);
+    updateUserInfo(uid, nickname, imageURL);
     dispatch(
       setLogin({
         uid: uid,
         email: email,
         nickname: nickname,
-        photoURL: photoURL,
+        photoURL: imageURL,
       }),
     );
   };
@@ -48,7 +48,7 @@ export default function Settings() {
   return (
     <Center w="100vw" h="80vh">
       <Box w="300px" padding="6vh 0">
-        <ImgAddForm imageURL={photoURL} setImageURL={setPhotoURL} />
+        <ImgAddForm imageURL={imageURL} setImageURL={setImageURL} />
         <AuthInput item={inputProps} />
         <FormButton props={'정보 변경'} event={updateUser} disabled={false} />
         <Center mt={6} justifyContent={'space-between'}>

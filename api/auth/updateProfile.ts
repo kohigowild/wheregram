@@ -7,7 +7,7 @@ export const updateUserInfo = async (uid: string, nickname: string, photoURL: st
   try {
     await updateProfile(auth.currentUser!, { displayName: nickname, photoURL: photoURL });
     const userRef = doc(db, 'user', uid);
-    await await updateDoc(userRef, {
+    await updateDoc(userRef, {
       displayName: nickname,
       photoURL: photoURL,
     });
