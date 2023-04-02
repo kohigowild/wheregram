@@ -5,7 +5,6 @@ import { Center, Box } from '@chakra-ui/react';
 import { Title, GoToSignUp } from '@/styles/auth/login';
 import AuthInput from '@/components/auth/authInput';
 import FormButton from '@/components/@common/formButton';
-import GoogleLoginBtn from '@/components/auth/googleLoginBtn';
 import { SubmitEmailLogin } from '@/api/auth/signIn';
 import { setLogin } from '@/store/modules/user';
 import { useAppDispatch } from '@/store';
@@ -68,7 +67,6 @@ export default function Login() {
           <AuthInput key={item.id} item={item} />
         ))}
         <FormButton props={'이메일 계정으로 로그인'} event={signInWithEmail} disabled={false} />
-        <GoogleLoginBtn />
         <GoToSignUp>
           <p>아직 계정이 없으신가요?</p>
           <Link href="/auth/signup">

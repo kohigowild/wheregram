@@ -13,8 +13,7 @@ import { updateUserInfo } from '@/api/auth/updateProfile';
 
 export default function Settings() {
   const dispatch = useAppDispatch();
-  const uid = useAppSelector((state: RootState) => state.user.uid);
-  const email = useAppSelector((state: RootState) => state.user.email);
+  const user = useAppSelector((state: RootState) => state.user);
   const defaultNickname = useAppSelector((state: RootState) => state.user.nickname);
   const [nickname, setNickname] = useState<string>('');
   const [imageURL, setImageURL] = useState<string>('');
@@ -34,13 +33,13 @@ export default function Settings() {
   };
 
   const updateUser = () => {
-    updateUserInfo(uid, nickname, imageURL);
+    updateUserInfo(user.uid, nickname ? nickname : user.nickname, imageURL ? imageURL : user.photoURL);
     dispatch(
       setLogin({
-        uid: uid,
-        email: email,
-        nickname: nickname,
-        photoURL: imageURL,
+        uid: user.uid,
+        email: user.email,
+        nickname: nickname ? nickname : user.nickname,
+        photoURL: imageURL ? imageURL : user.photoURL,
       }),
     );
   };

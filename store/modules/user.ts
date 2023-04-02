@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: { uid: string; email: string; nickname: string; photoURL: string | null } = {
+const initialState: { uid: string; email: string; nickname: string; photoURL: string } = {
   uid: '',
   email: '',
   nickname: '',

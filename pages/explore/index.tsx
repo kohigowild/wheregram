@@ -29,8 +29,8 @@ export default function Explore() {
 
   // 연동 후 무한 스크롤 구현
   return (
-    <Center w="100%">
-      <Box w="360px" padding="3vh 0">
+    <Center>
+      <Box padding="2vh 0">
         {feedList.map((card, index) => (
           <FeedCard card={card} comment={true} key={index} />
         ))}

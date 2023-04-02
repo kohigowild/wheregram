@@ -9,7 +9,7 @@ import defaultImage from '/public/profile-user.png';
 import { uploadImage } from '@/api/feed/uploadImage';
 import { photoUpload } from '@/interfaces/auth';
 
-export default function ImgAddForm({ imageURL, setImageURL }: photoUpload) {
+export default function ImgAddForm({ setImageURL }: photoUpload) {
   const defaultPhoto = useAppSelector((state: RootState) => state.user.photoURL);
   const [imagePreview, setImagePreview] = useState<any>(defaultImage);
 
