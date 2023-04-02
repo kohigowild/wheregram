@@ -48,7 +48,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
       duration: 3000,
       isClosable: true,
     });
-    Router.push('/explore');
+    Router.push('/profile');
   };
 
   useEffect(() => {

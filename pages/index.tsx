@@ -16,7 +16,7 @@ function Home() {
       nickname: '탈락도ROcK이다',
       profileURL: 'https://i.pinimg.com/564x/79/50/5b/79505b031fb97b848044ad0f4935cd98.jpg',
       rating: 3,
-      uid: '',
+      uid: 'a',
     },
     {
       docId: '2',
@@ -29,7 +29,7 @@ function Home() {
       nickname: '안알랴줌',
       profileURL: 'https://i.pinimg.com/236x/3a/2f/0d/3a2f0dce4af1c1ae21d178d5af32b2b6.jpg',
       rating: 3,
-      uid: '',
+      uid: 'a',
     },
     {
       docId: '1',
@@ -42,7 +42,7 @@ function Home() {
       nickname: '이슬짱팬',
       profileURL: 'https://i.pinimg.com/236x/1b/05/ce/1b05ce52aaed968236fa37110a711ab5.jpg',
       rating: 5,
-      uid: '',
+      uid: 'a',
     },
     {
       docId: '4',
@@ -55,7 +55,7 @@ function Home() {
       nickname: '북구럽군요',
       profileURL: 'https://i.pinimg.com/236x/ba/cb/29/bacb299fdc9fd501cd3f00c13204c56c.jpg',
       rating: 3,
-      uid: '',
+      uid: 'a',
     },
   ];
 

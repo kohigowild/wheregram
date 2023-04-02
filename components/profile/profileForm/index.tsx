@@ -12,7 +12,7 @@ export default function Profile({ nickname, photoURL, email }: profileProps) {
         <Image
           priority
           src={photoURL ? photoURL : defaultImage}
-          alt="profileImage"
+          alt="Profile Image"
           fill
           sizes="100px"
           style={{ borderRadius: '50%', objectFit: 'cover', cursor: 'pointer' }}

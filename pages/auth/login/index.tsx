@@ -47,7 +47,7 @@ export default function Login() {
           uid: result.uid,
           email: result.email,
           nickname: result.displayName,
-          photoURL: result.photoURL,
+          photoURL: result.photoURL ? result.photoURL : '',
         }),
       );
       Router.push('/');
