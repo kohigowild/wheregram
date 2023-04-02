@@ -16,6 +16,7 @@ export default function CardList({ feedList }: FeedListArray) {
                 src={item.feedImageURL ? item.feedImageURL : defaultImage}
                 alt={item.nickname}
                 fill
+                sizes="140px"
                 style={{ borderRadius: '8px', objectFit: 'cover', cursor: 'pointer' }}
               />
             </Box>

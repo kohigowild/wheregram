@@ -51,6 +51,7 @@ export default function ImgAddForm({ setImageURL }: photoUpload) {
                 src={imagePreview}
                 alt="profileImage"
                 fill
+                sizes="100px"
                 style={{ borderRadius: '50%', objectFit: 'cover', cursor: 'pointer' }}
               />
             </Box>

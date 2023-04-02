@@ -14,6 +14,7 @@ export default function Profile({ nickname, photoURL, email }: profileProps) {
           src={photoURL ? photoURL : defaultImage}
           alt="profileImage"
           fill
+          sizes="100px"
           style={{ borderRadius: '50%', objectFit: 'cover', cursor: 'pointer' }}
         />
       </Box>

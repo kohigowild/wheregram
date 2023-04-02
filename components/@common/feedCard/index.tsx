@@ -67,6 +67,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
                 src={card.profileURL ? card.profileURL : defaultImage}
                 alt={card.nickname}
                 fill
+                sizes="56px"
                 style={{
                   borderRadius: '50%',
                   objectFit: 'cover',
@@ -92,6 +93,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
             src={card.feedImageURL ? card.feedImageURL : defaultFeedImage}
             alt={card.address}
             fill
+            sizes="300px"
             style={{
               borderRadius: '8px',
               objectFit: 'cover',

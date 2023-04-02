@@ -7,7 +7,7 @@ import defaultImage from '/public/default-img.png';
 import { uploadImage } from '@/api/feed/uploadImage';
 import { photoUpload } from '@/interfaces/auth';
 
-export default function FeedImgAddForm({ imageURL, setImageURL }: photoUpload) {
+export default function FeedImgAddForm({ setImageURL }: photoUpload) {
   const [imagePreview, setImagePreview] = useState<any>(defaultImage);
 
   const addPreviewImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,6 +44,7 @@ export default function FeedImgAddForm({ imageURL, setImageURL }: photoUpload) {
                 src={imagePreview}
                 alt="profileImage"
                 fill
+                sizes="300px"
                 style={{ borderRadius: '8px', objectFit: 'cover', cursor: 'pointer' }}
               />
             </Box>
