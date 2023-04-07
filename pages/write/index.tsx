@@ -22,12 +22,20 @@ export default function Write() {
   const [imageURL, setImageURL] = useState<string>('');
   const [rating, setRating] = useState<number>(0);
   const [desc, setDesc] = useState<string>('');
+  const [keyword, setKeyword] = useState<string[]>([]);
 
   useEffect(() => {
     {
       position && callAddress(position.lng, position.lat, setAddress);
     }
   }, [position]);
+
+  useEffect(() => {
+    setKeyword(address.split(' '));
+    {
+      addressDetail && setKeyword((prev) => [...prev, addressDetail]);
+    }
+  }, [address, addressDetail]);
 
   const handleFormState = () => {
     setFormState(true);
@@ -59,7 +67,7 @@ export default function Write() {
   ];
 
   const createFeed = () => {
-    createDoc(uid, photoURL, nickname, address, addressDetail, imageURL, rating, desc);
+    createDoc(uid, photoURL, nickname, address, addressDetail, imageURL, rating, desc, keyword);
   };
 
   return (

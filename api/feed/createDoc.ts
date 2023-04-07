@@ -11,6 +11,7 @@ export const createDoc = async (
   feedImageURL: string,
   rating: number,
   desc: string,
+  keyword: string[],
 ) => {
   try {
     const docRef = await addDoc(collection(db, 'feed'), {
@@ -24,6 +25,7 @@ export const createDoc = async (
       desc: desc,
       like: 0,
       createAt: new Date().toLocaleString(),
+      keyword: keyword,
     });
     const docIdRef = doc(db, 'feed', docRef.id);
     await updateDoc(docIdRef, {
