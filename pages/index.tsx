@@ -1,63 +1,42 @@
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
+import { RootState } from '@/store';
+import { useAppSelector, useAppDispatch } from '@/store';
+import { setLike } from '@/store/modules/like';
+import { getMainDoc } from '@/api/feed/getDoc';
+import { getLikeFeed } from '@/api/feed/likeFeed';
 import { Center, Tag, Box } from '@chakra-ui/react';
 import { Title, SlideList, SlideTrack } from '@/styles/root/root';
 import FeedCard from '@/components/@common/feedCard';
+import { FeedListType } from '@/interfaces/feed';
 
 function Home() {
-  const CardInfo = [
-    {
-      docId: '0',
-      address: '전라남도 여수시',
-      addressDetail: '여기가 어디지',
-      createAt: '',
-      desc: '제발 살려줘',
-      feedImageURL: 'https://i.pinimg.com/564x/44/cd/31/44cd31ca061bf9ea5e3b424490f50a73.jpg',
-      like: 392,
-      nickname: '탈락도ROcK이다',
-      profileURL: 'https://i.pinimg.com/564x/79/50/5b/79505b031fb97b848044ad0f4935cd98.jpg',
-      rating: 3,
-      uid: 'a',
-    },
-    {
-      docId: '2',
-      address: '충청북도 파리',
-      addressDetail: '에펠탑',
-      createAt: '',
-      desc: '👻',
-      feedImageURL: 'https://i.pinimg.com/564x/3f/83/91/3f8391d2a4229c03aa419d73fb552725.jpg',
-      like: 431,
-      nickname: '안알랴줌',
-      profileURL: 'https://i.pinimg.com/236x/3a/2f/0d/3a2f0dce4af1c1ae21d178d5af32b2b6.jpg',
-      rating: 3,
-      uid: 'a',
-    },
-    {
-      docId: '1',
-      address: '서울특별시 동작구',
-      addressDetail: '',
-      createAt: '',
-      desc: '인생 최고로 가치 있던 천원',
-      feedImageURL: 'https://i.pinimg.com/236x/ff/0f/45/ff0f45384e7a2c537fc95da6e97e0fb5.jpg',
-      like: 803,
-      nickname: '이슬짱팬',
-      profileURL: 'https://i.pinimg.com/236x/1b/05/ce/1b05ce52aaed968236fa37110a711ab5.jpg',
-      rating: 5,
-      uid: 'a',
-    },
-    {
-      docId: '4',
-      address: '부산광역시 북구',
-      addressDetail: '북구 갤러리',
-      createAt: '',
-      desc: '반 고흐 전시회 진짜 멋있었다!',
-      feedImageURL: 'https://i.pinimg.com/564x/dd/cd/ae/ddcdaeaeb96e18b46c9e27cc638ba429.jpg',
-      like: 2032,
-      nickname: '북구럽군요',
-      profileURL: 'https://i.pinimg.com/236x/ba/cb/29/bacb299fdc9fd501cd3f00c13204c56c.jpg',
-      rating: 3,
-      uid: 'a',
-    },
-  ];
+  const dispatch = useAppDispatch();
+  const uid = useAppSelector((state: RootState) => state.user.uid);
+  const [cardInfo, setCardInfo] = useState<FeedListType[]>([]);
+
+  const getLikeList = async () => {
+    try {
+      const result = await getLikeFeed(uid);
+      dispatch(setLike(result));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getQ = async () => {
+    try {
+      const result: any = await getMainDoc();
+      setCardInfo(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getQ();
+    getLikeList();
+  }, []);
 
   return (
     <>
@@ -83,7 +62,7 @@ function Home() {
           <SlideTrack>
             <SlideList>
               <Center>
-                {CardInfo.map((card) => (
+                {cardInfo.map((card) => (
                   <FeedCard card={card} comment={false} key={card.docId} />
                 ))}
               </Center>

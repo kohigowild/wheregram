@@ -1,6 +1,15 @@
 import { db } from '../@common/firebase';
 import { collection, query, where, getDocs, orderBy, startAfter, limit } from 'firebase/firestore';
 
+export const getMainDoc = async () => {
+  const fristQ = query(collection(db, 'feed'), orderBy('like', 'desc'), limit(4));
+  const querySnapshot = await getDocs(fristQ);
+  const data = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+  }));
+  return data;
+};
+
 export const getExploreDoc = async (setKey: any) => {
   const fristQ = query(collection(db, 'feed'), orderBy('createAt', 'desc'), limit(4));
   const querySnapshot = await getDocs(fristQ);

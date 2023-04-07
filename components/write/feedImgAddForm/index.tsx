@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import imageCompression from 'browser-image-compression';
 import { FormContainer, Badge, AddInput } from '@/styles/write/write';
 import { Box, Center, Icon } from '@chakra-ui/react';
 import { HiOutlinePlus } from 'react-icons/hi';
@@ -12,11 +13,17 @@ export default function FeedImgAddForm({ setImageURL }: photoUpload) {
 
   const addPreviewImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files!;
+    const options = {
+      maxSizeMB: 2,
+      maxWidthOrHeight: 600,
+    };
     if (files.length === 0) {
       return;
     } else {
+      const compressedFile = await imageCompression(files[0], options);
+      const resizingFile = new File([compressedFile], files[0].name, { type: files[0].type });
       const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(resizingFile);
       return new Promise(() => {
         reader.onload = () => {
           setImagePreview(reader.result);

@@ -31,7 +31,9 @@ export default function Write() {
   }, [position]);
 
   useEffect(() => {
-    setKeyword(address.split(' '));
+    {
+      address && setKeyword(address.split(' '));
+    }
     {
       addressDetail && setKeyword((prev) => [...prev, addressDetail]);
     }
