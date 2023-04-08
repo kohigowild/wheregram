@@ -10,6 +10,7 @@ import ImgAddForm from '@/components/auth/imgAddForm';
 import AuthInput from '@/components/auth/authInput';
 import FormButton from '@/components/@common/formButton';
 import { updateUserInfo } from '@/api/auth/updateProfile';
+import { secessionUser } from '@/api/auth/createUser';
 
 export default function Settings() {
   const dispatch = useAppDispatch();
@@ -29,6 +30,13 @@ export default function Settings() {
   const handleLogOut = () => {
     dispatch(setLogout());
     dispatch(initLike());
+    Router.push('/auth/login');
+  };
+
+  const handleSecession = () => {
+    dispatch(setLogout());
+    dispatch(initLike());
+    secessionUser();
     Router.push('/auth/login');
   };
 
@@ -52,7 +60,7 @@ export default function Settings() {
         <FormButton props={'정보 변경'} event={updateUser} disabled={false} />
         <Center mt={6} justifyContent={'space-between'}>
           <Text onClick={handleLogOut}>로그아웃</Text>
-          <Text>회원 탈퇴</Text>
+          <Text onClick={handleSecession}>회원 탈퇴</Text>
         </Center>
       </Box>
     </Center>

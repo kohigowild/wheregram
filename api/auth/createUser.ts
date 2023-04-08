@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile, deleteUser } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../@common/firebase';
 import Router from 'next/router';
@@ -13,6 +13,15 @@ export const createUser = async (email: string, password: string, nickname: stri
       displayName: nickname,
       photoURL: photoURL,
     });
+    Router.push('/auth/login');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const secessionUser = async () => {
+  try {
+    await deleteUser(auth.currentUser!);
     Router.push('/auth/login');
   } catch (error) {
     console.log(error);
