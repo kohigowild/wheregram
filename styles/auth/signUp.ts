@@ -16,7 +16,7 @@ export const Badge = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 9999;
+  z-index: 1;
 `;
 
 export const AddInput = styled.input`

@@ -83,9 +83,7 @@ export default function Settings() {
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               Delete Customer
             </AlertDialogHeader>
-
             <AlertDialogBody>탈퇴하시겠습니까?</AlertDialogBody>
-
             <AlertDialogFooter>
               <Button ref={cancelRef} onClick={onClose}>
                 Cancel
