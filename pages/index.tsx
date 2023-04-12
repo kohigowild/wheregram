@@ -1,18 +1,19 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
-import { RootState } from '@/store';
 import { useAppSelector, useAppDispatch } from '@/store';
+import { RootState } from '@/store';
 import { setLike } from '@/store/modules/like';
 import { getMainDoc } from '@/api/feed/getDoc';
 import { getLikeFeed } from '@/api/feed/likeFeed';
-import { Center, Tag, Box } from '@chakra-ui/react';
-import { Title, SlideList, SlideTrack } from '@/styles/root/root';
+import { Center } from '@chakra-ui/react';
+import { Container, Title, SlideTrack, Desc, Logo } from '@/styles/root/root';
 import FeedCard from '@/components/@common/feedCard';
+import Carousel from '@/components/@common/carousel';
 import { FeedListType } from '@/interfaces/feed';
 
 function Home() {
   const dispatch = useAppDispatch();
-  const uid = useAppSelector((state: RootState) => state.user.uid);
+  const uid: string = useAppSelector((state: RootState) => state.user.uid);
   const [cardInfo, setCardInfo] = useState<FeedListType[]>([]);
 
   const getLikeList = async () => {
@@ -45,30 +46,25 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Center>
-        <Box>
+        <Container>
           <Title>
-            <p style={{ marginBottom: '4px' }}>
-              <Tag colorScheme="green" borderRadius="full" m="0 4px">
-                #관광 명소
-              </Tag>
-              부터
-              <Tag colorScheme="green" borderRadius="full" m="0 4px">
-                #맛집
-              </Tag>
-              까지
-            </p>
-            <p>모든 체험을 기록하고 공유하세요.</p>
+            <div>
+              <Desc>여행 후기 공유 플랫폼</Desc>
+              <Logo>#WHEREGRAM</Logo>
+            </div>
           </Title>
           <SlideTrack>
-            <SlideList>
-              <Center>
-                {cardInfo.map((card) => (
-                  <FeedCard card={card} comment={false} key={card.docId} />
-                ))}
-              </Center>
-            </SlideList>
+            <Carousel loop>
+              {cardInfo.map((card) => {
+                return (
+                  <div key={card.docId} style={{ display: 'flex', position: 'relative' }}>
+                    <FeedCard card={card} comment={false} />
+                  </div>
+                );
+              })}
+            </Carousel>
           </SlideTrack>
-        </Box>
+        </Container>
       </Center>
     </>
   );

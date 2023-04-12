@@ -9,4 +9,6 @@ export const theme: DefaultTheme = {
     textColor: '#2D3748',
     bgColor: '#EDF2F7',
   },
+  tablet: `(min-width: 720px)`,
+  desktop: `(min-width: 1280px)`,
 };

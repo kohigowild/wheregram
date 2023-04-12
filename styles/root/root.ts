@@ -1,19 +1,13 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { notoSansKrMedium } from '@/styles/@common/font/notoSansKr';
+import { notoSansKrBold } from '@/styles/@common/font/notoSansKr';
 
-const Slide = keyframes`
-5% {
-  transform: translateX(0)
-}
-40% {
-  transform: translateX(-100%)
-}
-70% {
-  transform: translateX(-200%)
-}
-100% {
-  transform: translateX(-300%)
-}
+export const Container = styled.div`
+  dlsplay: box;
+
+  @media ${(props) => props.theme.tablet} {
+    display: flex;
+  }
 `;
 
 export const Title = styled.div`
@@ -22,15 +16,51 @@ export const Title = styled.div`
   color: ${({ theme }) => theme.colors.textColor};
   font-family: ${notoSansKrMedium.style.fontFamily};
   font-size: 14px;
+
+  @media ${(props) => props.theme.tablet} {
+    text-align: left;
+    margin-right: 60px;
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const Desc = styled.div`
+  color: ${({ theme }) => theme.colors.textColor};
+  font-family: ${notoSansKrMedium.style.fontFamily};
+  font-size: 14px;
+
+  @media ${(props) => props.theme.tablet} {
+    font-size: 18px;
+  }
+`;
+
+export const Logo = styled.div`
+  color: ${({ theme }) => theme.colors.primary};
+  font-family: ${notoSansKrBold.style.fontFamily};
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.4s;
+
+  @media ${(props) => props.theme.tablet} {
+    font-size: 24px;
+  }
+
+  &:hover {
+    scale: 1.2;
+    transition: 0.4s;
+  }
 `;
 
 export const SlideTrack = styled.div`
   position: relative;
+  display: flex;
   overflow: hidden;
   width: 380px;
-`;
+  transition: 0.4s;
 
-export const SlideList = styled.div`
-  display: flex;
-  animation: ${Slide} 12s 2s alternate infinite;
+  @media ${(props) => props.theme.desktop} {
+    width: 760px;
+    transition: 0.4s;
+  }
 `;
