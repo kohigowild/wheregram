@@ -59,8 +59,13 @@ export const SlideTrack = styled.div`
   width: 380px;
   transition: 0.4s;
 
+  @media ${(props) => props.theme.tablet} {
+    width: 500px;
+    transition: 0.4s;
+  }
+
   @media ${(props) => props.theme.desktop} {
-    width: 760px;
+    width: 620px;
     transition: 0.4s;
   }
 `;

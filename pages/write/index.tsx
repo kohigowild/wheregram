@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RootState } from '@/store';
 import { useAppSelector } from '@/store';
 import { Center, Textarea, Box } from '@chakra-ui/react';
+import { Card } from '@/styles/write/write';
 import MapContainer from '@/components/write/mapContainer';
 import WriteInput from '@/components/write/writeInput';
 import FeedImgAddForm from '@/components/write/feedImgAddForm';
@@ -74,7 +75,7 @@ export default function Write() {
 
   return (
     <Center>
-      <Box w="300px" padding="3vh 0">
+      <Card>
         {!formState ? (
           <>
             <MapContainer
@@ -100,13 +101,13 @@ export default function Write() {
               placeholder="어떤 체험을 하셨나요?"
               borderColor="gray.300"
               focusBorderColor="green.400"
-              w="300px"
+              w="100%"
               onChange={(e) => setDesc(e.target.value)}
             />
             <FormButton props={'등록하기'} event={createFeed} disabled={false} />
           </>
         )}
-      </Box>
+      </Card>
     </Center>
   );
 }

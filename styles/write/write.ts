@@ -1,5 +1,22 @@
 import styled from 'styled-components';
 
+export const Card = styled.div`
+  width: 360px;
+  padding: 4vh 0;
+  border-radius: 16px;
+  margin: 10px;
+
+  @media ${(props) => props.theme.tablet} {
+    width: 480px;
+    transition: 0.4s;
+  }
+
+  @media ${(props) => props.theme.desktop} {
+    width: 600px;
+    transition: 0.4s;
+  }
+`;
+
 export const FormContainer = styled.form`
   position: relative;
 `;

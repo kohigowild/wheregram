@@ -12,7 +12,7 @@ export default function MapContainer({ position, setPosition }: AddressType) {
     <>
       <Map
         center={position ? { lat: position.lat, lng: position.lng } : { lat: latitude, lng: longitude }}
-        style={{ width: '300px', height: '300px', borderRadius: '12px', marginBottom: '12px' }}
+        style={{ width: '100%', height: '300px', borderRadius: '12px', marginBottom: '12px' }}
         level={8}
         onClick={(_, e) =>
           setPosition({

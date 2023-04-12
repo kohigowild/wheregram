@@ -1,5 +1,41 @@
 import styled from 'styled-components';
 
+export const Card = styled.div`
+  width: 360px;
+  padding: 4vh 0;
+  border-radius: 16px;
+  margin: 10px;
+
+  @media ${(props) => props.theme.tablet} {
+    width: 480px;
+    transition: 0.4s;
+  }
+
+  @media ${(props) => props.theme.desktop} {
+    width: 600px;
+    transition: 0.4s;
+  }
+`;
+
+export const ImgContainer = styled.div`
+  width: 300px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  justfy-content: center;
+  margin-bottom: 8px;
+
+  @media ${(props) => props.theme.tablet} {
+    width: 420px;
+    transition: 0.4s;
+  }
+
+  @media ${(props) => props.theme.desktop} {
+    width: 540px;
+    transition: 0.4s;
+  }
+`;
+
 export const Title = styled.div`
   margin-bottom: 12px;
   font-size: 20px;

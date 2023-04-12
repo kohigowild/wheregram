@@ -7,7 +7,7 @@ import { useAppSelector } from '@/store';
 import { likeFeed, unLikeFeed } from '@/api/feed/likeFeed';
 import { deleteFeed } from '@/api/feed/deleteDoc';
 import { Flex, Center, Icon, Box, useToast, CloseButton } from '@chakra-ui/react';
-import { UserName, UserLocation, Bold } from '@/styles/feed/feed';
+import { Card, UserName, UserLocation, Bold, ImgContainer } from '@/styles/feed/feed';
 import { HiLocationMarker, HiStar } from 'react-icons/hi';
 import { TiHeartFullOutline } from 'react-icons/ti';
 import defaultImage from '/public/profile-user.png';
@@ -58,7 +58,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
   });
 
   return (
-    <Box w="360px" padding="4vh 0" borderRadius="16px" boxShadow="lg" backgroundColor="gray.50" m="10px">
+    <Card>
       <Box ml="30px" mr="30px">
         <Center position="relative">
           <Flex w="90vw" mb={4} align="center">
@@ -88,18 +88,17 @@ export default function FeedCard({ card, comment }: FeedListCard) {
             <CloseButton size="sm" position="absolute" top="8px" right="8px" onClick={handleFeedDelete} />
           )}
         </Center>
-        <Center mb={2} w="300px" h="300px" position={'relative'}>
+        <ImgContainer>
           <Image
             src={card.feedImageURL ? card.feedImageURL : defaultFeedImage}
             alt={card.address}
             fill
-            sizes="300px"
             style={{
               borderRadius: '8px',
               objectFit: 'cover',
             }}
           />
-        </Center>
+        </ImgContainer>
         <Center mb="4px">
           <Flex w="90vw" justify="space-between" align="center" color="gray.700" fontSize="14px">
             좋아요 {getLike} 개
@@ -130,6 +129,6 @@ export default function FeedCard({ card, comment }: FeedListCard) {
         </Center>
         {comment && <Comment docId={card.docId} key={card.docId} />}
       </Box>
-    </Box>
+    </Card>
   );
 }

@@ -45,13 +45,12 @@ export default function FeedImgAddForm({ setImageURL }: photoUpload) {
             <Icon as={HiOutlinePlus} color="white" />
           </Badge>
           <Center>
-            <Box w={'300px'} h={'300px'} position="relative">
+            <Box w={'100%'} h={'300px'} position="relative">
               <Image
                 priority
                 src={imagePreview}
                 alt="profileImage"
                 fill
-                sizes="300px"
                 style={{ borderRadius: '8px', objectFit: 'cover', cursor: 'pointer' }}
               />
             </Box>
