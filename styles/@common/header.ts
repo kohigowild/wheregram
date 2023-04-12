@@ -8,6 +8,14 @@ export const Settings = styled.div`
 `;
 
 export const Main = styled.div`
+  height: 100vh;
   margin-top: 60px;
-  margin-bottom: 80px;
+`;
+
+export const Landing = styled.div`
+  height: 100vh;
+  margin-top: -60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

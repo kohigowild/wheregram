@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RootState } from '@/store';
 import { useAppSelector } from '@/store';
-import { Center, Textarea, Box } from '@chakra-ui/react';
+import { Center, Textarea } from '@chakra-ui/react';
 import { Card } from '@/styles/write/write';
 import MapContainer from '@/components/write/mapContainer';
 import WriteInput from '@/components/write/writeInput';
