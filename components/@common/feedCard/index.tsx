@@ -23,8 +23,8 @@ export default function FeedCard({ card, comment }: FeedListCard) {
   const [getLike, setGetLike] = useState<number>(card.like);
 
   const handleFeedLike = () => {
+    uid !== '' ? likeFeed(uid, card.docId, getLike + 1) : Router.push('/auth/login');
     setGetLike(getLike + 1);
-    likeFeed(uid, card.docId, getLike + 1);
   };
 
   const handleFeedUnlike = () => {
@@ -75,7 +75,7 @@ export default function FeedCard({ card, comment }: FeedListCard) {
               />
             </Box>
             <Box>
-              <Link href={`/profile/${card.uid}`}>
+              <Link href={uid !== '' ? `/profile/${card.uid}` : '/auth/login'}>
                 <UserName>{card.nickname}</UserName>
               </Link>
               <UserLocation>

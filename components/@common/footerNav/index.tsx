@@ -1,20 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { RootState } from '@/store';
 import { useAppSelector } from '@/store';
 import { Footer } from '@/styles/@common/footer';
-import { Tabs, TabList, Tab, Center, Icon } from '@chakra-ui/react';
-import { HiHome, HiHashtag, HiPlusCircle, HiSearch, HiIdentification } from 'react-icons/hi';
+import { Center, Icon } from '@chakra-ui/react';
+import { HiHashtag, HiPlusCircle, HiSearch, HiIdentification } from 'react-icons/hi';
 
 export default function FooterNav() {
+  const router = useRouter();
+  console.log(router.pathname);
   const login = useAppSelector((state: RootState) => state.user.uid);
 
   const TabsInfo = [
-    {
-      id: 0,
-      name: '/',
-      icon: HiHome,
-    },
     {
       id: 1,
       name: '/explore',
@@ -38,20 +36,34 @@ export default function FooterNav() {
   ];
 
   return (
-    <Tabs variant="soft-rounded" colorScheme="green">
-      <TabList>
-        <Footer>
-          <Center w="100%" h="52px">
-            {TabsInfo.map((tab) => (
-              <Link href={login !== '' ? tab.name : '/auth/login'} key={tab.id}>
-                <Tab w={10} h={10} ml={4} mr={4} _selected={{ color: 'white', bg: 'green.400' }}>
-                  <Icon as={tab.icon} w={6} h={6} />
-                </Tab>
-              </Link>
-            ))}
-          </Center>
-        </Footer>
-      </TabList>
-    </Tabs>
+    <Footer>
+      <Center w="100%" h="52px">
+        {TabsInfo.map((tab) => (
+          <Link href={login !== '' ? tab.name : '/auth/login'} key={tab.id}>
+            <div className={router.pathname === tab.name ? 'item active' : 'item'}>
+              <Icon as={tab.icon} w={6} h={6} />
+            </div>
+          </Link>
+        ))}
+      </Center>
+      <style>
+        {`
+        .item {
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 16px;
+        }
+
+        .active {
+          background-color: #48BB78;
+          color: white;
+        }
+        `}
+      </style>
+    </Footer>
   );
 }
