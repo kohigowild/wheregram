@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import { Container, Title, SlideTrack, Desc, Logo } from '@/styles/root/root';
+import { Badge } from '@chakra-ui/react';
+import { Container, Title, SlideTrack, Desc } from '@/styles/root/root';
 import { Landing } from '@/styles/@common/header';
 import Carousel from '@/components/@common/carousel';
 
@@ -31,8 +32,15 @@ function Home() {
         <Container>
           <Title>
             <div>
-              <Desc>여행 후기 공유 플랫폼</Desc>
-              <Logo>#WHEREGRAM</Logo>
+              <Badge variant="subtle" colorScheme="green" borderRadius="12px" mb="4px" mr="4px">
+                #관광 명소
+              </Badge>
+              부터
+              <Badge variant="subtle" colorScheme="green" borderRadius="12px" mb="4px" ml="4px" mr="4px">
+                #맛집
+              </Badge>
+              까지
+              <Desc>모든 체험을 기록하고 공유하세요!</Desc>
             </div>
           </Title>
           <SlideTrack>

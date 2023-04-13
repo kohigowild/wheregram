@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <>
-      <Center w="100%" h="52px" boxShadow="base" position={'fixed'} top="0" backgroundColor={'white'} zIndex="10000">
+      <Center w="100%" h="52px" boxShadow="base" backgroundColor={'white'} zIndex="1">
         <Logo />
         <Link href={login ? '/settings' : '/auth/login'}>
           <Settings>

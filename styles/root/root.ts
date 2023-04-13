@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { notoSansKrMedium } from '@/styles/@common/font/notoSansKr';
-import { notoSansKrBold } from '@/styles/@common/font/notoSansKr';
 
 export const Container = styled.div`
   dlsplay: box;
@@ -11,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  padding: 6vh 0;
+  padding: 12px 0;
   text-align: center;
   color: ${({ theme }) => theme.colors.textColor};
   font-family: ${notoSansKrMedium.style.fontFamily};
@@ -26,29 +25,14 @@ export const Title = styled.div`
 `;
 
 export const Desc = styled.div`
+  margin-top: 8px;
   color: ${({ theme }) => theme.colors.textColor};
   font-family: ${notoSansKrMedium.style.fontFamily};
   font-size: 14px;
 
-  @media ${(props) => props.theme.tablet} {
+  @media ${(props) => props.theme.desktop} {
     font-size: 18px;
-  }
-`;
-
-export const Logo = styled.div`
-  color: ${({ theme }) => theme.colors.primary};
-  font-family: ${notoSansKrBold.style.fontFamily};
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.4s;
-
-  @media ${(props) => props.theme.tablet} {
-    font-size: 24px;
-  }
-
-  &:hover {
-    scale: 1.2;
-    transition: 0.4s;
+    font-weight: 600;
   }
 `;
 
