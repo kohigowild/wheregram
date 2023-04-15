@@ -37,7 +37,7 @@ export default function FooterNav() {
 
   return (
     <Footer>
-      <Center w="100%" h="52px">
+      <Center w="100%" h="36px">
         {TabsInfo.map((tab) => (
           <Link href={login !== '' ? tab.name : '/auth/login'} key={tab.id}>
             <List className={router.pathname === tab.name ? 'tab-active' : ''}>

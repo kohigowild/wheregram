@@ -8,12 +8,12 @@ export const Settings = styled.div`
 `;
 
 export const Main = styled.div`
-  height: 88vh;
+  height: 100vh;
+  padding: 32px 0;
 `;
 
 export const Landing = styled.div`
   height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
 `;

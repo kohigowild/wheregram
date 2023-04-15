@@ -20,7 +20,7 @@ export default function Feed() {
 
   return (
     <Center>
-      <Box w="300px" padding="1vh 0">
+      <Box w="300px" padding="6vh 0">
         <Profile nickname={nickname} photoURL={photoURL} email={email} />
         <CardList feedList={feedList} />
       </Box>

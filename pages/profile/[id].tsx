@@ -21,7 +21,7 @@ export default function UserProfile() {
 
   return (
     <Center>
-      <Box w="300px" padding="1vh 0">
+      <Box w="300px" padding="6vh 0">
         {userInfo && (
           <Profile nickname={userInfo[0].displayName} photoURL={userInfo[0].photoURL} email={userInfo[0].email} />
         )}

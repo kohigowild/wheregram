@@ -25,7 +25,7 @@ export default function Search() {
 
   return (
     <Center>
-      <Box w="300px" padding="3vh 0">
+      <Box w="300px" padding="6vh 0">
         <Input
           placeholder="장소를 검색하세요."
           focusBorderColor="green.400"
