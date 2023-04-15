@@ -57,6 +57,7 @@ export const UserName = styled.div`
 export const Bold = styled.div`
   font-weight: 600;
   margin-right: 4px;
+  width: auto;
   color: ${({ theme }) => theme.colors.textColor};
 `;
 

@@ -7,7 +7,7 @@ export const createComment = async (docId: string, uid: string, nickname: string
       uid: uid,
       nickname: nickname,
       comment: comment,
-      createAt: new Date().toLocaleString(),
+      createAt: new Date(),
     });
     const commentIdRef = doc(db, `feed/${docId}/comment`, commentRef.id);
     await updateDoc(commentIdRef, {

@@ -23,7 +23,6 @@ export interface FeedListType {
   docId: string;
   address: string;
   addressDetail: string;
-  createAt: string;
   desc: string;
   feedImageURL: string;
   like: number;
@@ -50,6 +49,5 @@ export interface CommentType {
   uid: string;
   nickname: string;
   comment: string;
-  createAt: string;
   commentId: string;
 }

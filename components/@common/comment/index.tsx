@@ -40,12 +40,12 @@ export default function Comment({ docId }: DocId) {
 
   return (
     <Box>
-      {getCommentList.map((comment) => (
-        <div key={comment.commentId} style={{ display: 'flex' }}>
+      {getCommentList.map((comment, idx) => (
+        <div key={idx} style={{ display: 'flex' }}>
           <Flex w="90vw" mb={2} color="gray.700" fontSize="14px">
             <Link href={`/profile/${comment.uid}`}>
               <Bold>{comment.nickname}</Bold>
-            </Link>{' '}
+            </Link>
             {comment.comment}
           </Flex>
           {comment.uid === uid && (
