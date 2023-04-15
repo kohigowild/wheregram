@@ -33,10 +33,7 @@ export default function Detail() {
 
   return (
     <>
-      <Center>
-        {card && <FeedCard card={card[0]} comment={true} />}
-        <Center></Center>
-      </Center>
+      <Center mb="12px">{card && <FeedCard card={card[0]} comment={true} />}</Center>
     </>
   );
 }

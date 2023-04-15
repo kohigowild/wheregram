@@ -3,7 +3,18 @@ import Link from 'next/link';
 import { RootState } from '@/store';
 import { useAppSelector } from '@/store';
 import { Input } from '@chakra-ui/react';
-import { Box, Flex, Button, CloseButton, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Button,
+  CloseButton,
+  useToast,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from '@chakra-ui/react';
 import { Bold } from '@/styles/feed/feed';
 import { createComment, getComment, deleteComment } from '@/api/feed/comment';
 import { DocId, CommentType } from '@/interfaces/feed';
@@ -39,20 +50,34 @@ export default function Comment({ docId }: DocId) {
 
   return (
     <Box>
-      {getCommentList.map((comment, idx) => (
-        <div key={idx} style={{ display: 'flex' }}>
-          <Flex w="90vw" mb={2} color="gray.700" fontSize="14px">
-            <Link href={`/profile/${comment.uid}`}>
-              <Bold>{comment.nickname}</Bold>
-            </Link>
-            {comment.comment}
-          </Flex>
-          {comment.uid === uid && (
-            <CloseButton size="sm" mt="-2px" onClick={() => handleDeleteComment(comment.commentId)} />
-          )}
-        </div>
-      ))}
-      <Flex>
+      <Accordion allowToggle>
+        <AccordionItem>
+          <h2>
+            <AccordionButton padding="0px" mb="8px">
+              <Box as="span" flex="1" textAlign="left" fontSize="14px" color="gray.500">
+                {getCommentList.length} 개의 댓글 보기
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel padding="0px">
+            {getCommentList.map((comment, idx) => (
+              <div key={idx} style={{ display: 'flex' }}>
+                <Flex w="90vw" mb={2} color="gray.700" fontSize="14px">
+                  <Link href={`/profile/${comment.uid}`}>
+                    <Bold>{comment.nickname}</Bold>
+                  </Link>
+                  {comment.comment}
+                </Flex>
+                {comment.uid === uid && (
+                  <CloseButton size="sm" mt="-2px" onClick={() => handleDeleteComment(comment.commentId)} />
+                )}
+              </div>
+            ))}
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+      <Flex pb="20px">
         <Input
           placeholder="댓글을 입력해 주세요."
           focusBorderColor="green.400"
