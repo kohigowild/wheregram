@@ -42,11 +42,11 @@ export const AddInput = styled.input`
 
 export const RatingContainer = styled.div`
   display: flex;
-  .inactive {
-    color: ${({ theme }) => theme.colors.textColor};
-  }
   .active {
     color: ${({ theme }) => theme.colors.primary};
+  }
+  .inactive {
+    color: ${({ theme }) => theme.colors.textColor};
   }
 `;
 

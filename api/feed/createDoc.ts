@@ -24,7 +24,7 @@ export const createDoc = async (
       rating: rating,
       desc: desc,
       like: 0,
-      createAt: new Date().toLocaleString(),
+      createAt: new Date(),
       keyword: keyword,
     });
     const docIdRef = doc(db, 'feed', docRef.id);

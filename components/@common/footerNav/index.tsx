@@ -40,7 +40,7 @@ export default function FooterNav() {
       <Center w="100%" h="52px">
         {TabsInfo.map((tab) => (
           <Link href={login !== '' ? tab.name : '/auth/login'} key={tab.id}>
-            <List className={router.pathname === tab.name ? 'active' : 'item'}>
+            <List className={router.pathname === tab.name ? 'tab-active' : ''}>
               <Icon as={tab.icon} w={6} h={6} />
             </List>
           </Link>
@@ -48,7 +48,7 @@ export default function FooterNav() {
       </Center>
       <style>
         {`
-        .active {
+        .tab-active {
           background-color: #48BB78;
           color: white;
         }
