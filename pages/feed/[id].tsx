@@ -13,7 +13,7 @@ export default function Detail() {
   const dispatch = useAppDispatch();
   const uid = useAppSelector((state: RootState) => state.user.uid);
   const router = useRouter();
-  const id: any = router.query.id;
+  const { id }: any = router.query;
   const [card, setCard] = useState<FeedListType[] | null>(null);
 
   const getLikeList = async () => {
@@ -26,7 +26,8 @@ export default function Detail() {
   };
 
   useEffect(() => {
-    getFeedDetail(id, setCard);
+    console.log({ id });
+    id !== undefined && getFeedDetail(id, setCard);
     getLikeList();
   }, []);
 
@@ -38,4 +39,10 @@ export default function Detail() {
       </Center>
     </>
   );
+}
+
+export async function getServerSideProps({ query: { id } }: any) {
+  return {
+    props: { id },
+  };
 }

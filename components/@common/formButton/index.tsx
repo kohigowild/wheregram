@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Spinner } from '@chakra-ui/react';
 import { BtnProps } from '@/interfaces/auth';
 
 export default function FormButton({ props, event, disabled }: BtnProps) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleButtonClick = () => {
+    setIsLoading(true);
+  };
+
   const SubmitButton = styled.button`
     width: 100%;
     height: 40px;
@@ -29,8 +36,13 @@ export default function FormButton({ props, event, disabled }: BtnProps) {
   `;
 
   return (
-    <SubmitButton onClick={event} disabled={disabled}>
-      {props}
+    <SubmitButton
+      onClick={() => {
+        handleButtonClick();
+        event();
+      }}
+      disabled={disabled}>
+      {isLoading ? <Spinner color="white" /> : props}
     </SubmitButton>
   );
 }

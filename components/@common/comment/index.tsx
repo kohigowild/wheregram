@@ -14,17 +14,15 @@ export default function Comment({ docId }: DocId) {
   const nickname = useAppSelector((state: RootState) => state.user.nickname);
   const [comment, setComment] = useState<string>('');
   const [getCommentList, setGetCommentList] = useState<CommentType[]>([]);
-  const [sendComment, setSendTest] = useState<boolean>(false);
 
   const handleCreateComment = () => {
     createComment(docId, uid, nickname, comment);
-    setSendTest(!sendComment);
     setComment('');
+    getComment(docId, setGetCommentList);
   };
 
   const handleDeleteComment = (id: string) => {
     deleteComment(docId, id);
-    setSendTest(!sendComment);
     toast({
       title: '삭제 알림',
       description: '댓글을 삭제했습니다.',
@@ -32,11 +30,12 @@ export default function Comment({ docId }: DocId) {
       duration: 3000,
       isClosable: true,
     });
+    getComment(docId, setGetCommentList);
   };
 
   useEffect(() => {
     getComment(docId, setGetCommentList);
-  }, [sendComment]);
+  }, []);
 
   return (
     <Box>
