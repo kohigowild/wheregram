@@ -38,8 +38,8 @@ export default function Detail() {
   );
 }
 
-export async function getServerSideProps({ query: { id } }: any) {
-  return {
-    props: { id },
-  };
-}
+// export async function getServerSideProps({ query: { id } }: any) {
+//   return {
+//     props: { id },
+//   };
+// }
