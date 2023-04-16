@@ -8,6 +8,7 @@ import WriteInput from '@/components/write/writeInput';
 import FeedImgAddForm from '@/components/write/feedImgAddForm';
 import Rating from '@/components/write/rating';
 import FormButton from '@/components/@common/formButton';
+import TagBox from '@/components/write/tagBox';
 import { callAddress } from '@/api/location/callAddress';
 import { createDoc } from '@/api/feed/createDoc';
 import { LocationType } from '@/interfaces/location';
@@ -30,15 +31,6 @@ export default function Write() {
       position && callAddress(position.lng, position.lat, setAddress);
     }
   }, [position]);
-
-  useEffect(() => {
-    {
-      address && setKeyword(address.split(' '));
-    }
-    {
-      addressDetail && setKeyword((prev) => [...prev, addressDetail]);
-    }
-  }, [address, addressDetail]);
 
   const handleFormState = () => {
     setFormState(true);
@@ -104,6 +96,7 @@ export default function Write() {
               w="100%"
               onChange={(e) => setDesc(e.target.value)}
             />
+            <TagBox keyword={keyword} setKeyword={setKeyword} />
             <FormButton props={'등록하기'} event={createFeed} disabled={false} />
           </>
         )}

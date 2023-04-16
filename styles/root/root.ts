@@ -3,13 +3,13 @@ import { notoSansKrMedium } from '@/styles/@common/font/notoSansKr';
 
 const bounce = keyframes`
   0% {
-    transform: translateY(-100%);
+    transform: translateY(-24px);
   }
   50% {
-    transform: translateY(30%);
+    transform: translateY(12px);
   }
   70% {
-    transform: translateY(-10%);
+    transform: translateY(-6px);
   }
   100% {
     transform: translateY(0);
@@ -43,7 +43,7 @@ export const Title = styled.div`
   color: ${({ theme }) => theme.colors.textColor};
   font-family: ${notoSansKrMedium.style.fontFamily};
   font-size: 14px;
-  animation: ${bounce} 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: ${bounce} 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 
   @media ${(props) => props.theme.tablet} {
     text-align: left;

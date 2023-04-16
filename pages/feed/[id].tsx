@@ -33,13 +33,13 @@ export default function Detail() {
 
   return (
     <>
-      <Center mb="12px">{card && <FeedCard card={card[0]} comment={true} />}</Center>
+      <Center>{card && <FeedCard card={card[0]} comment={true} />}</Center>
     </>
   );
 }
 
-export async function getServerSideProps({ query: { id } }: any) {
-  return {
-    props: { id },
-  };
-}
+// export async function getServerSideProps({ query: { id } }: any) {
+//   return {
+//     props: { id },
+//   };
+// }

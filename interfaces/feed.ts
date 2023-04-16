@@ -30,6 +30,7 @@ export interface FeedListType {
   profileURL: string;
   rating: number;
   uid: string;
+  keyword: string[];
 }
 
 export interface FeedListCard {
@@ -50,4 +51,9 @@ export interface CommentType {
   nickname: string;
   comment: string;
   commentId: string;
+}
+
+export interface KeywordType {
+  keyword: string[];
+  setKeyword: React.Dispatch<React.SetStateAction<string[]>>;
 }

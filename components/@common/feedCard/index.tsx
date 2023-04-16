@@ -6,7 +6,7 @@ import { RootState } from '@/store';
 import { useAppSelector } from '@/store';
 import { likeFeed, unLikeFeed } from '@/api/feed/likeFeed';
 import { deleteFeed } from '@/api/feed/deleteDoc';
-import { Flex, Center, Icon, Box, useToast, CloseButton } from '@chakra-ui/react';
+import { Flex, Center, Icon, Box, useToast, CloseButton, Badge } from '@chakra-ui/react';
 import { Card, UserName, UserLocation, Bold, ImgContainer } from '@/styles/feed/feed';
 import { HiLocationMarker, HiStar } from 'react-icons/hi';
 import { TiHeartFullOutline } from 'react-icons/ti';
@@ -99,6 +99,12 @@ export default function FeedCard({ card, comment }: FeedListCard) {
             }}
           />
         </ImgContainer>
+        {card.keyword &&
+          card.keyword.map((word, idx) => (
+            <Badge variant="subtle" colorScheme="green" mb="4px" borderRadius="8px" key={idx} mr="4px">
+              #{word}
+            </Badge>
+          ))}
         <Center mb="4px">
           <Flex w="90vw" justify="space-between" align="center" color="gray.700" fontSize="14px">
             좋아요 {getLike} 개

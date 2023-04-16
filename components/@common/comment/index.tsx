@@ -14,7 +14,9 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  Icon,
 } from '@chakra-ui/react';
+import { AiOutlineClose } from 'react-icons/ai';
 import { Bold } from '@/styles/feed/feed';
 import { createComment, getComment, deleteComment } from '@/api/feed/comment';
 import { DocId, CommentType } from '@/interfaces/feed';
@@ -70,7 +72,14 @@ export default function Comment({ docId }: DocId) {
                   {comment.comment}
                 </Flex>
                 {comment.uid === uid && (
-                  <CloseButton size="sm" mt="-2px" onClick={() => handleDeleteComment(comment.commentId)} />
+                  <Icon
+                    as={AiOutlineClose}
+                    mt="4px"
+                    mr="4px"
+                    fontSize="12px"
+                    onClick={() => handleDeleteComment(comment.commentId)}
+                    cursor="pointer"
+                  />
                 )}
               </div>
             ))}
