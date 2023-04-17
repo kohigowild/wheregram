@@ -39,11 +39,11 @@ export default function FooterNav() {
     <Footer>
       <Center w="100%" h="36px">
         {TabsInfo.map((tab) => (
-          <Link href={login !== '' ? tab.name : '/auth/login'} key={tab.id}>
-            <List className={router.pathname === tab.name ? 'tab-active' : ''}>
+          <List className={router.pathname === tab.name ? 'tab-active' : ''} key={tab.id}>
+            <Link href={login !== '' ? tab.name : '/auth/login'}>
               <Icon as={tab.icon} w={6} h={6} />
-            </List>
-          </Link>
+            </Link>
+          </List>
         ))}
       </Center>
       <style>
